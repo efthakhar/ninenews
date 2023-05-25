@@ -13,7 +13,7 @@
 <body>
     <div class="admin-page">
 
-        @include('admin.partials.sidebar')
+        @include('admin.partials.sidebar', $navlinks = get_sidebar_navlinks())
 
         <div class="admin-main">
             @include('admin.partials.header')
