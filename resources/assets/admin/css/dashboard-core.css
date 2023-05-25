@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300;400;600;700&family=Jost:wght@200;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Nunito:wght@400;600;900&family=Poppins:wght@100;200;300;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 63.5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.116) rgb(255, 255, 255);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.116);
+    border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Admin Sidebar */
+
+.admin-page {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+.admin-sidebar {
+    width: 230px;
+    height: 100vh;
+    flex: 0 0 230px;
+    user-select: none;
+    border-right: 1px solid #dfdfdf;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+    height: 100vh;
+    transition: all .3s;
+    z-index: 100;
+}
+
+.admin-sidebar-hidden {
+    width: 0px;
+    height: 100vh;
+    flex: 0 0 0px;
+    transition: all .3s;
+}
+
+.admin-sibar__logo {
+    background-color: rgb(255, 255, 255);
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.6rem 1rem;
+    border-bottom: 1px solid #dfdfdf;
+    z-index: 100;
+}
+
+.admin-sibar__logo_icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #0084ff;
+}
+
+.admin-sibar__logo .logo-text {
+    color: #313435;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.admin-sidebar__links {
+    padding-top: 2rem;
+}
+
+.admin-sidebar__link_item {
+    cursor: pointer;
+    position: relative;
+}
+
+.sidebar__link {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding: .8rem 1.5rem;
+    font-size: 1.5rem;
+    color: #72777a;
+    transition: all .2s;
+    font-weight: 500;
+
+}
+
+
+.sidebar__link.active, .sidebar__link:hover {
+    color: #0084ff;
+    background-color: #E5F2FF;
+}
+
+.sidebar__link_icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.sidebar__link_icon {
+    margin-right: 8px;
+}
+
+
+.sidebar__sublink {
+    text-transform: capitalize;
+    display: block;
+    padding: .6rem 1rem .6rem 4.5rem;
+    font-size: 1.5rem;
+    color: #72777a;
+    transition: all .2s;
+    font-weight: 500;
+}
+
+.sidebar__sublink.active, .sidebar__sublink:hover {
+    color: #0084ff;
+}
+
+
+
+.sidebar__link_sublinks {
+    max-height: 0;
+    transition: max-height 0.22s ease-out;
+    overflow: hidden;
+
+
+}
+
+.sidebar__link_sublinks.show_sublinks {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+}
+
+
+/* ADMIN MAIN AREA */
+.admin-main {
+    width: auto;
+    flex: 1 1 auto;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    padding: 5px 16px;
+    min-height: 58px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #dfdfdf;
+    position: sticky;
+    top: 0%;
+}
+
+.menu-icon {
+    display: inline-block;
+    background-color: #E5F2FF;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.menu-icon svg {
+    display: block;
+    width: 30px !important;
+    height: 30px !important;
+    cursor: pointer;
+    fill: #0084ff;
+    user-select: none;
+    transition: all .2s;
+}
+
+.hide-small-device-sidebar svg {
+    display: none;
+    width: 30px !important;
+    height: 30px !important;
+    margin-left: 30px;
+    cursor: pointer;
+    fill: #0084ff;
+}
+
+/* ADMIN CONTENT */
+
+.admin-content {
+    padding: 20px;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .admin-sidebar {
+        position: absolute;
+        width: 230px;
+        left: -100%;
+    }
+
+    .admin-sidebar-hidden {
+        position: absolute;
+        width: 230px;
+        left: 0%;
+    }
+
+    .hide-small-device-sidebar svg {
+        display: block;
+    }
+}
