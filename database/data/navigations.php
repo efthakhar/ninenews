@@ -4,24 +4,24 @@ return [
     [
 		'label'       => 'Dashboard',
 		'link'        => '/admin',
-		'icon'        => 'home',
+		'icon'        => 'earth',
 		'permissions' => []
 	],
 	[
 		'label'       => 'Tag',
-		'link'        => '/tags',
-		'icon'        => 'flash',
+		'link'        => '/admin/tags',
+		'icon'        => 'tag',
 		'permissions' => [],
 		'sublinks'    => [
 			[
 				'label'       => 'All Tag',
-				'link'        => 'tags',
+				'link'        => '/admin/tags',
 				'icon'        => 'overview',
 				'permissions' => [],
 			],
 			[
 				'label'       => 'New Tag',
-				'link'        => 'tags/add',
+				'link'        => '/admin/tags/create',
 				'icon'        => 'flash',
 				'permissions' => [],
 			],

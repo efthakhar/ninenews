@@ -45,3 +45,9 @@ toggle_sidebar_icon.addEventListener('click', (e) => {
 mobile_sidebar_close_btn.addEventListener('click', (e) => {
     admin_sidebar.classList.toggle('admin-sidebar-hidden');
 })
+
+// switch language
+let language_switcher_icon = document.querySelector('.language-switcher-icon');
+let language_switcher = document.querySelector('.language-switcher')
+language_switcher_icon.addEventListener('click',(e) => language_switcher.classList.toggle('d-none') )
+language_switcher_icon.addEventListener('blur',(e)=>  setTimeout(()=>language_switcher.classList.add('d-none'),100))

@@ -31,10 +31,19 @@ html {
     border-radius: 20px;
 }
 
+.bg-sb1{ background-color: #0084FF !important;}
+.bg-sb2{ background-color: #e5f2ff !important;}
+
+.text-b1{ color: #0084ff !important;}
+
 a {
     text-decoration: none;
 }
 
+svg{
+    cursor: pointer;
+    user-select: none;
+}
 /* Admin Sidebar */
 
 .admin-page {
@@ -118,8 +127,8 @@ a {
 }
 
 .sidebar__link_icon svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     fill: currentColor;
 }
 
@@ -177,21 +186,30 @@ a {
     top: 0%;
 }
 
-.menu-icon {
+
+.boxed-bg-icon{
     display: inline-block;
     background-color: #E5F2FF;
     padding: 5px 10px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
-.menu-icon svg {
+.boxed-bg-icon svg {
     display: block;
-    width: 30px !important;
-    height: 30px !important;
-    cursor: pointer;
+    width: 28px !important;
+    height: 28px !important;
     fill: #0084ff;
     user-select: none;
     transition: all .2s;
+}
+
+.svg-icon-style-1 svg {
+    display: block;
+    width: 28px !important;
+    height: 28px !important;
+    fill:#0084ff;
+   
 }
 
 .hide-small-device-sidebar svg {
@@ -201,6 +219,7 @@ a {
     margin-left: 30px;
     cursor: pointer;
     fill: #0084ff;
+   
 }
 
 /* ADMIN CONTENT */
