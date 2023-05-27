@@ -10,7 +10,7 @@
             <div class="list-group">
                 @foreach(config('app.locales') as $ln)
                 <a href="/setlanguage/{{$ln}}" 
-                class="{{ config('app.locale')==$ln?'bg-sb2 text-b1':'' }} list-group-item list-group-item-action h4 m-0 text-center "
+                class="{{ config('app.locale')==$ln?'bg-sb2 text-b1':'' }} list-group-item list-group-item-action h6 m-0 text-center "
                
                 >
                     {{$ln}}

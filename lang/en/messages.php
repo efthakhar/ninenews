@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'tag' => 'tag',
+	'tag'  => 'tag',
+	'tags' => 'tags',
+	'tag.create'=> 'create new tag'
 ];

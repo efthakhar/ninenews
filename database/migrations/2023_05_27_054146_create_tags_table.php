@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name',30);
             $table->string('slug',30);
-            $table->text('description');
-            $table->text('meta_tag_description');
-            $table->string('meta_tag_keywords');
-            $table->bigInteger('tag_img_id');
-            $table->bigInteger('created_by');
+            $table->text('description')->nullable();
+            $table->text('meta_tag_description')->nullable();
+            $table->string('meta_tag_keywords')->nullable();
+            $table->bigInteger('tag_img_id')->nullable();
+            $table->bigInteger('created_by')->nullable();
             $table->timestamps();
         });
     }

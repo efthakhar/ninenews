@@ -1,5 +1,5 @@
 <?php
-
+$GLOBALS['page_options'] = ['10' => 10, '1' => 1, '5' => 5];
 function get_sidebar_navlinks() {
 	return require base_path() . '/database/data/navigations.php';
 }
@@ -7,3 +7,36 @@ function get_sidebar_navlinks() {
 function get_svgicon($icon_name) {
 	echo file_get_contents(base_path() . "/resources/assets/svg-icons/{$icon_name}.svg");
 }
+
+
+
+
+function generate_select_input($name, $id, $selected_value, $options, $css_classes = '') {
+	?>
+		<select class="<?php echo $css_classes; ?>"	id="<?php echo $id; ?>"	name="<?php echo $name; ?>">
+			<?php
+				foreach ($options as $option) {
+					?>
+					<option value="<?php echo $option['value']; ?>" <?php  echo $selected_value == $option['value'] ? 'selected' : ''; ?>
+					>  <?php echo $option['label']; ?>
+					</option>
+					<?php
+				}
+			?>
+		</select>
+	<?php
+}
+
+
+function generate_perpage_options($name, $id, $selected_value, $css_classes = '') {
+
+	$options = [
+		['label'=>'5','value'=>'5'],
+		['label'=>'10','value'=>'10'],
+		['label'=>'20','value'=>'20'],
+		['label'=>'30','value'=>'30'],
+	];
+	$selected_value = empty($selected_value) ? 10 : $selected_value;
+	generate_select_input($name, $id, $selected_value, $options, $css_classes);
+}
+

@@ -16,7 +16,7 @@ for (let i = 0; i < links.length; i++) {
 
     }
 
-    if (links[i].href === currentUrl) {
+    if (links[i].href === currentUrl.split('?')[0]) {
 
         links[i].classList.add('active');
 

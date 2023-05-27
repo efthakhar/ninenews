@@ -26,6 +26,7 @@
     @vite('resources/assets/common/js/jquery.js')
     @vite('resources/assets/common/js/bootstrap.js')
     @vite('resources/assets/admin/js/dashboard-core.js')
+    @yield('footer-script')
 </body>
 
 </html>
