@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9news</title>
-    @vite('resources/assets/common/css/bootstrap.css')
+
+    <link rel="stylesheet" href="{{asset('common/css/bootstrap.css')}}">
     @vite('resources/assets/admin/css/dashboard-core.css')
 </head>
 
@@ -23,8 +24,8 @@
         </div>
 
     </div>
-    @vite('resources/assets/common/js/jquery.js')
-    @vite('resources/assets/common/js/bootstrap.js')
+    
+    <script src="{{asset('common/js/jquery.js')}}"></script>
     @vite('resources/assets/admin/js/dashboard-core.js')
     @yield('footer-script')
 </body>
