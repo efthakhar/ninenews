@@ -67,4 +67,9 @@ class TagController extends Controller {
 
 		return redirect()->route('admin.tag.index');
 	}
+
+	public function delete($id) {
+		Tag::where('id',$id)->delete();
+		return redirect()->back();
+	}
 }

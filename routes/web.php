@@ -24,3 +24,4 @@ Route::get('/admin', [DashboardController::class, 'overview']);
 Route::get('/admin/tags', [TagController::class, 'index'])->name('admin.tag.index');
 Route::get('/admin/tags/create', [TagController::class, 'create'])->name('admin.tag.create');
 Route::post('/admin/tags', [TagController::class, 'store'])->name('admin.tag.store');
+Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');

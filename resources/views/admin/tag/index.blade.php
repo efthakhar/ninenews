@@ -72,9 +72,13 @@
                 <a href="" class="btn btn-sm text-sb1 tb-action-btn">
                   {{ get_svgicon('pen') }}
                 </a>
-                <a href="" class="btn btn-sm text-danger tb-action-btn">
-                  {{ get_svgicon('bin') }}
-                </a>
+                <form action="{{ route('admin.tag.delete', $tag->id) }}" method="POST" class="delete-tag-form">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-sm text-danger tb-action-btn delete-tag" > 
+                    {{ get_svgicon('bin') }}
+                  </button>
+                </form>
               </div>
             </td>
           </tr>
@@ -90,7 +94,9 @@
   <div class="pagination-container">
     {{$tags->links()}}
   </div>
-</div>
+
+  @include('admin.partials.delete-confirmbox')
+
 @endsection
 
 
