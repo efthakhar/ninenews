@@ -15,8 +15,8 @@ body {
     color: #374948;
 }
 
-th,h1,h2,h3,h4,h5,h6,p,a{
-    color:#374948;
+th, h1, h2, h3, h4, h5, h6, p, a {
+    color: #374948;
 }
 
 
@@ -38,7 +38,9 @@ input[type=checkbox] {
 
 /* utitlies */
 
-.fit-content{width: fit-content;}
+.fit-content {
+    width: fit-content;
+}
 
 .fw20px {
     width: 20px;
@@ -51,12 +53,15 @@ input[type=checkbox] {
 .fw50px {
     width: 50px;
 }
+
 .fw100px {
     width: 100px;
 }
+
 .fw150px {
     width: 150px;
 }
+
 .fw200px {
     width: 200px;
 }
@@ -101,32 +106,47 @@ input[type=checkbox] {
 .bg-sb2 {
     background-color: #e5f2ff !important;
 }
+.bg-success-1 {
+    background-color: #e5fae5 !important;
+}
+
+.text-success-1{
+    color:#00ca00;
+}
 
 .text-sb1 {
     color: #0084ff !important;
 }
+
 .text-b1 {
-   color: #374948 !important;
+    color: #374948 !important;
 }
 
 /* buttoon with icon */
-.btn-sm-with-icon{
-    display: flex;justify-content: center; align-items: center;
+.btn-sm-with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.btn-sm-with-icon svg{
-   width: 18px; height: 18px; fill:currentColor !important;
+.btn-sm-with-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor !important;
 }
+
 /* Table Action Button */
-.tb-action-btn svg{
-width: 22px !important;
-height: 22px !important;
-fill: currentColor;
+.tb-action-btn svg {
+    width: 22px !important;
+    height: 22px !important;
+    fill: currentColor;
 }
-.tb-action-btn:hover{
-opacity: .7;
+
+.tb-action-btn:hover {
+    opacity: .7;
 }
+
 /* Works on Firefox */
 * {
     scrollbar-width: thin;
@@ -362,4 +382,24 @@ svg {
     .hide-small-device-sidebar svg {
         display: block;
     }
+}
+
+/* Delete Confirmbox Css */
+#delete-confirmbox-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.253);
+    z-index: 200;
+}
+
+#delete-confirmbox {
+    width: 95vw;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
 }

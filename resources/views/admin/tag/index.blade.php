@@ -66,10 +66,10 @@
             <td>{{$tag->slug}}</td>
             <td>
               <div class="d-flex justify-center align-center">
-                <a href="" class="btn btn-sm text-info tb-action-btn ">
+                <a href="{{ route('admin.tag.single', $tag->id) }}" class="btn btn-sm text-info tb-action-btn ">
                   {{ get_svgicon('eye') }}
                 </a>
-                <a href="" class="btn btn-sm text-sb1 tb-action-btn">
+                <a href="{{ route('admin.tag.edit', $tag->id) }}" class="btn btn-sm text-sb1 tb-action-btn">
                   {{ get_svgicon('pen') }}
                 </a>
                 <form action="{{ route('admin.tag.delete', $tag->id) }}" method="POST" class="delete-tag-form">

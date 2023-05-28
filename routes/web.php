@@ -23,5 +23,8 @@ Route::get('/admin', [DashboardController::class, 'overview']);
 // Tag
 Route::get('/admin/tags', [TagController::class, 'index'])->name('admin.tag.index');
 Route::get('/admin/tags/create', [TagController::class, 'create'])->name('admin.tag.create');
+Route::get('/admin/tags/{id}', [TagController::class, 'show'])->name('admin.tag.single');
 Route::post('/admin/tags', [TagController::class, 'store'])->name('admin.tag.store');
+Route::get('/admin/tags/{id}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
+Route::put('/admin/tags/{id}', [TagController::class, 'update'])->name('admin.tag.update');
 Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');
