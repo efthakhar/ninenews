@@ -19,10 +19,7 @@ th,h1,h2,h3,h4,h5,h6,p,a{
     color:#374948;
 }
 
-svg{
-    width: 20px;
-    height: 20px;
-}
+
 
 input[type=checkbox] {
     cursor: pointer;
@@ -232,7 +229,7 @@ svg {
     font-size: 1rem;
     color: #72777a;
     transition: all .2s;
-    font-weight: 500;
+    font-weight: 400;
 
 }
 
@@ -263,7 +260,7 @@ svg {
     font-size: 1rem;
     color: #72777a;
     transition: all .2s;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .sidebar__sublink.active, .sidebar__sublink:hover {
