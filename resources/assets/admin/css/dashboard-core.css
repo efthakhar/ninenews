@@ -38,6 +38,12 @@ input[type=checkbox] {
 
 /* utitlies */
 
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .fit-content {
     width: fit-content;
 }
@@ -346,6 +352,12 @@ svg {
     height: 28px !important;
     fill: #0084ff;
 
+}
+.svg-icon-sm-style-1 svg {
+    display: block;
+    width: 18px !important;
+    height: 18px !important;
+    fill: currentColor;
 }
 
 .hide-small-device-sidebar svg {

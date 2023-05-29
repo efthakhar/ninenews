@@ -5,22 +5,25 @@
         </svg>
     </div>
     <div class="position-relative language-switcher-icon svg-icon-style-1 ms-auto"  tabindex="0">
-        {{ get_svgicon('earth') }}
-        <div class="language-switcher d-none" style="position: absolute; top:110%;right:0%;cursor: pointer; width:100px">
-            <div class="list-group">
-                @foreach(config('app.locales') as $ln)
-                <a href="/setlanguage/{{$ln}}" 
-                class="{{ config('app.locale')==$ln?'bg-sb2 text-b1':'' }} list-group-item list-group-item-action h6 m-0 text-center "
-               
-                >
-                    {{$ln}}
-                </a>
-                @endforeach
-            </div>
-        </div>
+        <span class="" id="language-switcher-dropdown" data-bs-toggle="dropdown">{{ get_svgicon('earth') }}</span>
+        <ul  class="dropdown-menu  p-0 " aria-labelledby="language-switcher-dropdown" >
+            @foreach(config('app.locales') as $ln)
+            <a href="/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?'bg-sb2 text-b1':'' }} dropdown-item " >  {{$ln}} </a>
+            @endforeach
+        </ul>
     </div>
-    <div class="svg-icon-style-1 ms-4">
-       {{ get_svgicon('user') }}
+
+
+    <div class="position-relative svg-icon-style-1 ms-4">
+      <span class="" id="topbar-user-dropdown" data-bs-toggle="dropdown" >{{ get_svgicon('user') }}</span> 
+      <ul class="dropdown-menu p-0" aria-labelledby="topbar-user-dropdown">
+        <li>
+            <a class="dropdown-item svg-icon-sm-style-1 flex-center" href="{{route('logout')}}">
+               <span class="me-2">logout</span>
+               {{ get_svgicon('logout') }}
+            </a>
+        </li>
+      </ul>
     </div>
 
 </div>

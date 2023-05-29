@@ -26,6 +26,7 @@
     </div>
     
     <script src="{{asset('common/js/jquery.js')}}"></script>
+    <script src="{{asset('common/js/bootstrap.js')}}"></script>
     @vite('resources/assets/admin/js/dashboard-core.js')
     @yield('footer-script')
 </body>
