@@ -77,6 +77,7 @@ class TagController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
+
 		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
 
 		$request->merge(['slug' => $slug]);
@@ -89,7 +90,7 @@ class TagController extends Controller {
 			'meta_tag_keywords'    => 'string|nullable',
 		]);
 
-		$validatedData['created_by'] = auth()->id();
+		$validatedData['updated_by'] = auth()->id();
 
 		Tag::where('id', $id)->update($validatedData);
 

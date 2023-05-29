@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('meta_tag_keywords')->nullable();
             $table->bigInteger('tag_img_id')->nullable();
             $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }
