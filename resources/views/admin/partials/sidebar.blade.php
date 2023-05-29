@@ -12,39 +12,26 @@
             <span class="text-sb1">9</span><span class="text-b1">news</span>
         </h2>
         <span class="hide-small-device-sidebar">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                    d="M21 17.9996V19.9996H3V17.9996H21ZM6.94975 3.5498V13.4493L2 8.49955L6.94975 3.5498ZM21 10.9996V12.9996H12V10.9996H21ZM21 3.99955V5.99955H12V3.99955H21Z">
-                </path>
-            </svg>
+            <i class="ri-menu-fold-fill h2 "></i>
         </span>
     </div>
     <div class="admin-sidebar__links">
         @foreach ($navlinks as $navlink)
             <div class="admin-sidebar__link_item">
                 @if (isset($navlink['sublinks']))
-                    <li class="sidebar__link">
-                        <span class="sidebar__link_icon">
-                            {{ get_svgicon($navlink['icon']) }}
-                        </span>
-                        <span>{{ $navlink['label'] }}</span>
+                    <li class="sidebar__link">   
+                        <span > <i class="{{$navlink['icon']}} me-2"></i> {{ $navlink['label'] }}</span>
                     </li>
                     <div class="sidebar__link_sublinks">
                         @foreach ($navlink['sublinks'] as $sublink)
-                            <a href="{{ $sublink['link'] }}" class="sidebar__sublink">
-                                <span class="sidebar__sublink_icon">
-                                    {{-- {{ get_svgicon($navlink['icon']) }} --}}
-                                </span>
-                                {{ $sublink['label'] }}
+                            <a href="{{ $sublink['link'] }}" class="sidebar__sublink">                 
+                                <span class="ms-2"> <i class="ri-arrow-right-fill me-2"></i> {{ $sublink['label'] }}</span>
                             </a>
                         @endforeach
                     </div>
                 @else
                     <a class="sidebar__link" href="{{ $navlink['link'] }}">
-                        <span class="sidebar__link_icon">
-                            {{ get_svgicon($navlink['icon']) }}
-                        </span>
-                        <span>{{ $navlink['label'] }}</span>
+                        <span> <i class="{{$navlink['icon']}}  me-2"></i> {{ $navlink['label'] }}</span>
                     </a>
                 @endif
             </div>

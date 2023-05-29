@@ -8,6 +8,7 @@
     <title>9news</title>
 
     <link rel="stylesheet" href="{{asset('common/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('common/icon-font/remix/remixicon.css')}}">
     @vite('resources/assets/admin/css/dashboard-core.css')
 </head>
 

@@ -1,4 +1,5 @@
 const currentUrl = window.location.href;
+let currentBaseUrl = currentUrl.split('?')[0].split("/").slice(0,5).join("/")
 
 // sidebar sublinks toggle functionality and active class to links
 let links = document.querySelectorAll('.sidebar__link,.sidebar__sublink');
@@ -15,8 +16,11 @@ for (let i = 0; i < links.length; i++) {
         })
 
     }
+}
 
-    if (links[i].href === currentUrl.split('?')[0]) {
+for (let i = 0; i < links.length; i++) {
+
+    if (links[i].href === currentUrl.split('?')[0] ) {
 
         links[i].classList.add('active');
 
@@ -26,17 +30,20 @@ for (let i = 0; i < links.length; i++) {
 
         let sublinks = links[i].closest('.admin-sidebar__link_item').querySelector('.sidebar__link_sublinks')
         sublinks!=null? sublinks.classList.add('show_sublinks'):'';
+        
+        break;
     }
+
+    
 
 }
 
 
 
-
 // sidebar hide or show toggle function
-let toggle_sidebar_icon = document.querySelector('.menu-icon');
+let toggle_sidebar_icon = document.querySelector('.header-menu-icon');
 let admin_sidebar = document.querySelector('.admin-sidebar');
-let mobile_sidebar_close_btn = document.querySelector('.hide-small-device-sidebar svg');
+let mobile_sidebar_close_btn = document.querySelector('.hide-small-device-sidebar');
 
 toggle_sidebar_icon.addEventListener('click', (e) => {
     admin_sidebar.classList.toggle('admin-sidebar-hidden');
@@ -46,8 +53,3 @@ mobile_sidebar_close_btn.addEventListener('click', (e) => {
     admin_sidebar.classList.toggle('admin-sidebar-hidden');
 })
 
-// switch language
-let language_switcher_icon = document.querySelector('.language-switcher-icon');
-let language_switcher = document.querySelector('.language-switcher')
-language_switcher_icon.addEventListener('click',(e) => language_switcher.classList.toggle('d-none') )
-language_switcher_icon.addEventListener('blur',(e)=>  setTimeout(()=>language_switcher.classList.add('d-none'),400))

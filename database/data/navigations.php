@@ -4,13 +4,13 @@ return [
     [
 		'label'       => 'Dashboard',
 		'link'        => '/admin',
-		'icon'        => 'earth',
+		'icon'        => 'ri-home-4-line',
 		'permissions' => []
 	],
 	[
 		'label'       => 'Tag',
 		'link'        => '/admin/tags',
-		'icon'        => 'tag',
+		'icon'        => 'ri-price-tag-3-line',
 		'permissions' => [],
 		'sublinks'    => [
 			[

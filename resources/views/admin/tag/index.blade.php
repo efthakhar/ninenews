@@ -5,12 +5,12 @@
 
 
 
-  <div class="d-flex flex-wrap">
+  <div class="">
     <h4 class="h4 text-capitalize"> {{ __('messages.tags') }} </h4>
-    <div class="ms-auto d-flex">
-        <a href="/admin/tags/create" class="text-white btn btn-sm btn-sm-with-icon text-white bg-sb1  ms-auto m-1">
-          {{get_svgicon('plus')}}
-          <span class="d-none d-sm-inline ms-1">Add New</span>
+    <div class="ms-auto d-flex ">
+        <a href="/admin/tags/create" class="btn btn-sm btn-primary ms-auto m-1 " role="button">
+          <i class="ri-add-fill h5"></i>
+          <span class="d-none d-sm-inline ms-1"> Add New</span>
         </a>
     </div>
   </div>
@@ -66,17 +66,17 @@
             <td>{{$tag->slug}}</td>
             <td>
               <div class="d-flex justify-center align-center">
-                <a href="{{ route('admin.tag.single', $tag->id) }}" class="btn btn-sm text-info tb-action-btn ">
-                  {{ get_svgicon('eye') }}
+                <a href="{{ route('admin.tag.single', $tag->id) }}" class="btn btn-sm p-0 text-info mx-1">
+                  <i class="ri-eye-line h4"></i>
                 </a>
-                <a href="{{ route('admin.tag.edit', $tag->id) }}" class="btn btn-sm text-sb1 tb-action-btn">
-                  {{ get_svgicon('pen') }}
+                <a href="{{ route('admin.tag.edit', $tag->id) }}" class="btn btn-sm p-0 text-sb1 mx-1">
+                  <i class="ri-edit-2-line h4"></i>
                 </a>
                 <form action="{{ route('admin.tag.delete', $tag->id) }}" method="POST" class="delete-tag-form">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-sm text-danger tb-action-btn delete-tag" > 
-                    {{ get_svgicon('bin') }}
+                  <button type="submit" class="p-0 btn btn-sm text-danger delete-tag mx-1" > 
+                    <i class="ri-delete-bin-line h4"></i>
                   </button>
                 </form>
               </div>

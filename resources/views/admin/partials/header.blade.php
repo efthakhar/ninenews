@@ -1,26 +1,28 @@
 <div class="admin-header">
-    <div class="boxed-bg-icon menu-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path>
-        </svg>
+    <div class="boxed-bg-icon header-menu-icon">
+        <i class="ri-menu-3-line"></i>
     </div>
-    <div class="position-relative language-switcher-icon svg-icon-style-1 ms-auto"  tabindex="0">
-        <span class="" id="language-switcher-dropdown" data-bs-toggle="dropdown">{{ get_svgicon('earth') }}</span>
+    <div class="ms-auto"  tabindex="0">
+        <span class="cursor-pointer" id="language-switcher-dropdown" data-bs-toggle="dropdown">
+            <i class="ri-global-fill h3 text-sb1"></i>
+        </span>
         <ul  class="dropdown-menu  p-0 " aria-labelledby="language-switcher-dropdown" >
             @foreach(config('app.locales') as $ln)
-            <a href="/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?'bg-sb2 text-b1':'' }} dropdown-item " >  {{$ln}} </a>
+            <a href="/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?' text-sb1':'' }} dropdown-item " >  {{$ln}} </a>
             @endforeach
         </ul>
     </div>
 
 
     <div class="position-relative svg-icon-style-1 ms-4">
-      <span class="" id="topbar-user-dropdown" data-bs-toggle="dropdown" >{{ get_svgicon('user') }}</span> 
+      <span class="cursor-pointer" id="topbar-user-dropdown" data-bs-toggle="dropdown" >
+        <i class="ri-user-3-line  h3 text-sb1"></i>
+      </span> 
       <ul class="dropdown-menu p-0" aria-labelledby="topbar-user-dropdown">
         <li>
             <a class="dropdown-item svg-icon-sm-style-1 flex-center" href="{{route('logout')}}">
-               <span class="me-2">logout</span>
-               {{ get_svgicon('logout') }}
+               <span class="me-2">logout <i class="ri-logout-circle-r-line h5 ms-1 text-danger"></i></span>
+               
             </a>
         </li>
       </ul>
