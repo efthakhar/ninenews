@@ -20,8 +20,8 @@ class FullFreshDbSeeder extends Seeder
         Cache::flush();
         Schema::disableForeignKeyConstraints();
         
-        $this->call(SuperAdminSeeder::class);
         $this->call(PermissionSeeder::class);
+        $this->call(SuperAdminSeeder::class);
 
         $this->call(TagSeeder::class);
 

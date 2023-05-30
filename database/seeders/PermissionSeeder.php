@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -19,9 +20,13 @@ class PermissionSeeder extends Seeder
     {
         Permission::truncate();
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
+        Role::truncate();
+        $super_admin_role = Role::create(['name' => 'super-admin']);
         
         foreach ($this->permissions as $permission) {
             Permission::create(['name' => $permission ]);
+            $super_admin_role->givePermissionTo( $permission);
         }
     }
 }

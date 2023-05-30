@@ -9,6 +9,9 @@ use Illuminate\Validation\Rule;
 
 class TagController extends Controller {
 	public function index(Request $request) {
+
+		$this->authorize('view-tags');
+		
 		$qs_perpage  = $request->query('perpage') ?? 10;
 		$qs_name     = $request->query('name');
 		$qs_slug     = $request->query('slug');
@@ -41,16 +44,23 @@ class TagController extends Controller {
 	}
 
 	public function show($id) {
+		$this->authorize('view-tags');
 		return view('admin.tag.single', [
 			'tag' => Tag::find($id),
 		]);
 	}
 
 	public function create() {
+
+		$this->authorize('create-tags');
+
 		return view('admin.tag.create');
 	}
 
 	public function store(Request $request) {
+
+		$this->authorize('create-tags');
+
 		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
 
 		$request->merge(['slug' => $slug]);
@@ -71,12 +81,17 @@ class TagController extends Controller {
 	}
 
 	public function edit($id) {
+
+		$this->authorize('update-tags');
+
 		return view('admin.tag.edit', [
 			'tag' => Tag::find($id),
 		]);
 	}
 
 	public function update(Request $request, $id) {
+
+        $this->authorize('view-tags');
 
 		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
 
@@ -98,7 +113,11 @@ class TagController extends Controller {
 	}
 
 	public function delete($id) {
-		Tag::where('id', $id)->delete();
+
+		$id  = explode(',',$id);
+		$this->authorize('delete-tags');
+
+		Tag::whereIn('id', $id)->delete();
 
 		return redirect()->back();
 	}
