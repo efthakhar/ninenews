@@ -8,7 +8,7 @@
         </span>
         <ul  class="dropdown-menu  p-0 " aria-labelledby="language-switcher-dropdown" >
             @foreach(config('app.locales') as $ln)
-            <a href="/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?' text-sb1':'' }} dropdown-item " >  {{$ln}} </a>
+            <a href="/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?' active':'' }} dropdown-item " >  {{$ln}} </a>
             @endforeach
         </ul>
     </div>

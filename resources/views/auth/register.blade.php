@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="registerpage p-2">
-        <div class="col-md-4 max-350px p-3 mx-4 mt-5 mx-auto border border-primary rounded-3">
+        <div class="col-md-4 max-350px p-3 mx-4 mt-5 mx-auto shadow rounded-3">
 
             <h3 class="text-capitalize mx-auto text-center my-3">Register</h3>
 

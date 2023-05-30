@@ -131,30 +131,8 @@ input[type=checkbox] {
     color: #374948 !important;
 }
 
-/* buttoon with icon */
-.btn-sm-with-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-}
 
-.btn-sm-with-icon svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor !important;
-}
-
-/* Table Action Button */
-.tb-action-btn svg {
-    width: 22px !important;
-    height: 22px !important;
-    fill: currentColor;
-}
-
-.tb-action-btn:hover {
-    opacity: .7;
-}
 
 /* Works on Firefox */
 * {
@@ -273,19 +251,6 @@ svg {
     background-color: #E5F2FF;
 }
 
-.sidebar__link_icon svg, .sidebar__sublink_icon svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
-.sidebar__link_icon, .sidebar__sublink_icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-}
-
 
 .sidebar__sublink {
     text-transform: capitalize;
@@ -305,10 +270,8 @@ svg {
 
 .sidebar__link_sublinks {
     max-height: 0;
-    transition: max-height 0.22s ease-out;
+    transition: max-height 0.1s ease-out;
     overflow: hidden;
-
-
 }
 
 .sidebar__link_sublinks.show_sublinks {
@@ -345,19 +308,6 @@ svg {
 
 }
 
-.svg-icon-style-1 svg {
-    display: block;
-    width: 28px !important;
-    height: 28px !important;
-    fill: #0084ff;
-
-}
-.svg-icon-sm-style-1 svg {
-    display: block;
-    width: 18px !important;
-    height: 18px !important;
-    fill: currentColor;
-}
 
 .hide-small-device-sidebar i{
     display: none;
