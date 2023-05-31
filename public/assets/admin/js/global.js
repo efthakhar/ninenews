@@ -32,6 +32,8 @@ function generate_select_list(options, selectId, selectName, selectedValue='', c
 
   return select + `</select>`;
 }
+
+
 // Generate Pagination
 function generate_pagination(total,current,link_class='') {
 
@@ -85,4 +87,9 @@ function generate_pagination(total,current,link_class='') {
   `
   return pagination
  
+}
+
+
+function translate(key){
+
 }

@@ -1,14 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
 <div class="admin-tag-page-content">
 
-
-  {{-- @include('admin.partials.delete-confirmbox') --}}
-
 </div>
-
+@include('admin.partials.delete-confirmbox')
 @endsection
 
 

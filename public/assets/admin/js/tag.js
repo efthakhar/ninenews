@@ -7,8 +7,6 @@ $(function () {
     });
 
     // Admin Tag Data Start
-
-    
     let sort_by = ''
     let sort_type = ''
     let query_name = ''
@@ -18,7 +16,6 @@ $(function () {
 
     let total_page = 1
     let current_page = 1
-
 
     let sort_by_options = [
         {
@@ -50,12 +47,10 @@ $(function () {
         }
     ]
 
-
     // Admin Tag Data End
     let content = document.querySelector('.admin-tag-page-content')
 
-
-
+    // create admin tag initial view
     function create_admin_tag_index_page_view(fetchtag) {
 
         content.innerHTML = ''
@@ -122,7 +117,7 @@ $(function () {
         content.insertAdjacentHTML('beforeend', pagination_wrapper)
     }
 
-
+    // fetch tags with ajax
     function fetch_tags(page, perpage, name, slug, sortby, sorttype, ) {
 
         $.ajax({
@@ -194,27 +189,20 @@ $(function () {
 
                 let pagination = response.tags.total > 0 ? generate_pagination(total_page,current_page,'tags_pagination_link') :''
 
-                content.querySelector('.pagination-container').innerHTML = pagination
-
-                
+                content.querySelector('.pagination-container').innerHTML = pagination         
 
             },
             error: function (xhr, status, error) {
-                console.log(error)
+                //console.log(error)
             }
         });
 
     }
 
-
     create_admin_tag_index_page_view()
     fetch_tags(1, per_page, query_name, query_slug, sort_by, sort_type)
    
-
-
-
-
-
+   
     content.addEventListener('change', (e) => {
 
         if (e.target.getAttribute('id') == 'perpage') {
@@ -257,35 +245,37 @@ $(function () {
     })
 
 
-    // function showConfirmbox() {
+    function showConfirmbox() {
 
-    //     return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
 
-    //         $('#delete-confirmbox-container').removeClass('d-none')
+            $('#delete-confirmbox-container').removeClass('d-none')
 
-    //         $('#confirm-delete-action').on('click', function () {
-    //             $('#delete-confirmbox-container').addClass('d-none')
-    //             resolve(true)
-    //         })
+            $('#confirm-delete-action').on('click', function () {
+                $('#delete-confirmbox-container').addClass('d-none')
+                resolve(true)
+            })
 
-    //         $('#cancel-delete-action').on('click', function () {
-    //             $('#delete-confirmbox-container').addClass('d-none')
-    //             resolve(false)
-    //         })
+            $('#cancel-delete-action').on('click', function () {
+                $('#delete-confirmbox-container').addClass('d-none')
+                resolve(false)
+            })
 
-    //     });
-    // }
+        });
+    }
 
 
 
-    // $('.delete-tag').on('click', (e) => {
+    $('.delete-tag').on('click', (e) => {
 
-    //     e.preventDefault()
-    //     showConfirmbox().then((confirmed) => {
-    //         confirmed == true ? $(e.target).closest('.delete-tag-form').trigger("submit") : ''
-    //     });
+        e.preventDefault()
+        showConfirmbox().then((confirmed) => {
+            confirmed == true ? $(e.target).closest('.delete-tag-form').trigger("submit") : ''
+        });
 
-    // })
+    })
+
+    
 
 
 
