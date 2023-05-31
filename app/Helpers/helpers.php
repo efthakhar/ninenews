@@ -35,6 +35,9 @@ function generate_perpage_options($name, $id, $selected_value, $css_classes = ''
 		['label'=>'10','value'=>'10'],
 		['label'=>'20','value'=>'20'],
 		['label'=>'30','value'=>'30'],
+		['label'=>'40','value'=>'40'],
+		['label'=>'50','value'=>'50'],
+		['label'=>'60','value'=>'60'],
 	];
 	$selected_value = empty($selected_value) ? 10 : $selected_value;
 	generate_select_input($name, $id, $selected_value, $options, $css_classes);

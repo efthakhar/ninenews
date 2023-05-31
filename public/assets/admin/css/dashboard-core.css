@@ -19,10 +19,7 @@ th, h1, h2, h3, h4, h5, h6, p, a {
     color: #374948;
 }
 
-a{cursor: pointer;}
 
-.unclickable{  pointer-events: none; }
-.not-allowed{cursor:not-allowed}
 
 input[type=checkbox] {
     cursor: pointer;
@@ -366,39 +363,3 @@ svg {
     transform: translate(-50%, -50%);
     position: absolute;
 }
-
-/* Pagination */
-.pagination{ user-select: none;}
-
-/* Css Pre Loader */
-
-.loader1-w{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0%;
-    left:0%;
-    /* background-color: #bac9d870; */
-    z-index: 1000;
-}
-.loader1 {
-    width: 100px;
-    height: 100px;
-    border: 15px solid #0084ff96;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    box-sizing: border-box;
-    animation: rotation 1.4s linear infinite;
-    }
-
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-} 

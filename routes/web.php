@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\Api\TagController as ApiTagController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +37,5 @@ Route::middleware('auth')->group(function(){
 	Route::get('/admin/tags/{id}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
 	Route::put('/admin/tags/{id}', [TagController::class, 'update'])->name('admin.tag.update');
 	Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');
-
-	Route::get('/api/tags', [ApiTagController::class, 'index'])->name('api.tags.index');
 
 });
