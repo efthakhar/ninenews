@@ -19,7 +19,10 @@ th, h1, h2, h3, h4, h5, h6, p, a {
     color: #374948;
 }
 
+a{cursor: pointer;}
 
+.unclickable{  pointer-events: none; }
+.not-allowed{cursor:not-allowed}
 
 input[type=checkbox] {
     cursor: pointer;
@@ -363,6 +366,9 @@ svg {
     transform: translate(-50%, -50%);
     position: absolute;
 }
+
+/* Pagination */
+.pagination{ user-select: none;}
 
 /* Css Pre Loader */
 

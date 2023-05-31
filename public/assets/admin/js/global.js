@@ -4,14 +4,14 @@
 
 // Per Page Options
 let perpage_options = [
-    {'label':'5','value':5},
-    {'label':'10','value':10},
-    {'label':'15','value':15},
-    {'label':'20','value':20},
-    {'label':'30','value':30},
-    {'label':'40','value':40},
-    {'label':'50','value':50},
-    {'label':'60','value':60},
+  {'label':'5','value':5},
+  {'label':'10','value':10},
+  {'label':'15','value':15},
+  {'label':'20','value':20},
+  {'label':'30','value':30},
+  {'label':'40','value':40},
+  {'label':'50','value':50},
+  {'label':'60','value':60},
 ]
 
 
@@ -33,40 +33,51 @@ function generate_select_list(options, selectId, selectName, selectedValue='', c
   return select + `</select>`;
 }
 // Generate Pagination
-function generate_pagination(total,current,perpage,pageChange) {
+function generate_pagination(total,current,link_class='') {
+
 
   let pagination = 
   `
   <nav>
       <ul class="pagination">`
       +
-      `<li class="page-item ${current==1?'disabled':''}" >
-          <a class="page-link" href="#" aria-label="Previous" data-page=${current-1}>
-          <span aria-hidden="true">&laquo;</span>
+      `<li class="page-item ${current==1?'not-allowed disabled':''}"" >
+          <a class="page-link disabled ${link_class} ${current==1?'unclickable':''}"   data-page=${current-1} ${current==1?'disabled=true':''}>
+          &laquo;
           </a>
       </li>`
       +
       `
       <li class="page-item">
-        <a class="page-link ${current>1?'':'d-none'}"  data-page=${current-1}>
+        <a class="page-link ${link_class} ${current-1>1?'':'d-none'}"  data-page=${current-2}>
+        ${current-2}
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link ${link_class} ${current>1?'':'d-none'}"  data-page=${current-1}>
         ${current-1}
         </a>
       </li>
-      <li class="page-item ">
-        <a class="page-link" style="cursor:not-allowed" data-page=${current}>
+      <li class="page-item active not-allowed">
+        <a class="page-link ${link_class} unclickable" data-page=${current}>
         ${current}
         </a>
       </li>
       <li class="page-item ${current<total?'':'d-none'}">
-        <a class="page-link" href="#" data-page=${current+1}>
+        <a class="page-link  ${link_class}"  data-page=${current+1}>
         ${current+1}
+        </a>
+      </li>
+      <li class="page-item ${current+1<total?'':'d-none'}">
+        <a class="page-link ${link_class}"  data-page=${current+2}>
+        ${current+2}
         </a>
       </li>
       
       `+
-      `<li class="page-item  ${current==total?'disabled':''}">
-          <a class="page-link" href="#" aria-label="Next" data-page=${current-1}>
-          <span aria-hidden="true">&raquo;</span>
+      `<li class="page-item ${current==total?'not-allowed disabled':''}" >
+          <a class="page-link ${link_class} ${current==total?'unclickable':''} "  data-page=${current+1}  >
+          &raquo;
           </a>
       </li>
       </ul>

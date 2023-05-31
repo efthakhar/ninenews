@@ -27,6 +27,21 @@ class TagSeeder extends Seeder
         ['id'=> 16, 'name'=> 'sports', 'slug'=>'sports'],
         ['id'=> 17, 'name'=> 'wordlcup', 'slug'=>'wordlcup'],
         ['id'=> 18, 'name'=> 'eid', 'slug'=>'eid'],
+        ['id'=> 19, 'name'=> 'fashon', 'slug'=>'fashon'],
+        ['id'=> 20, 'name'=> 'local news', 'slug'=>'local-news'],
+        ['id'=> 21, 'name'=> 'economy', 'slug'=>'economy'],
+        ['id'=> 22, 'name'=> 'world-politics', 'slug'=>'world-politics'],
+        ['id'=> 23, 'name'=> 'health', 'slug'=>'health'],
+        ['id'=> 24, 'name'=> 'chatGPT', 'slug'=>'chatGPT'],
+        ['id'=> 25, 'name'=> 'artifitial-intelligence', 'slug'=>'artifitial-intelligence'],
+        ['id'=> 26, 'name'=> 'openai', 'slug'=>'openai'],
+        ['id'=> 27, 'name'=> 'cricket', 'slug'=>'cricket'],
+        ['id'=> 28, 'name'=> 'football', 'slug'=>'football'],
+        ['id'=> 29, 'name'=> 'hocky', 'slug'=>'hocky'],
+        ['id'=> 30, 'name'=> 'wild-news', 'slug'=>'wild-news'],
+        ['id'=> 31, 'name'=> 'study-abroad', 'slug'=>'study-abroad'],
+        ['id'=> 32, 'name'=> 'pc-problems', 'slug'=>'pc-problems'],
+        ['id'=> 33, 'name'=> 'latest-laptops', 'slug'=>'latest-laptops'],
     ];
 
     public function run(): void

@@ -143,6 +143,8 @@ $(function () {
                 current_page = response.tags.current_page
                 total_page = response.tags.last_page
                 per_page = response.tags.per_page
+        
+                content.querySelector('#perpage').value = per_page
 
                 let tag_rows_content = ` `;
 
@@ -187,17 +189,18 @@ $(function () {
                      
                  </table>
                 `;
-
-
                 
                 content.querySelector('.tags-table').innerHTML = table
 
-                content.querySelector('.pagination-container').innerHTML =
-                generate_pagination(total_page,current_page,per_page,'pagechange')
+                let pagination = response.tags.total > 0 ? generate_pagination(total_page,current_page,'tags_pagination_link') :''
+
+                content.querySelector('.pagination-container').innerHTML = pagination
+
+                
 
             },
             error: function (xhr, status, error) {
-
+                console.log(error)
             }
         });
 
@@ -246,7 +249,7 @@ $(function () {
 
     content.addEventListener('click', (e) => {
 
-        if (e.target.classList.contains('page-link')) {
+        if (e.target.classList.contains('tags_pagination_link')) {
             let page = e.target.getAttribute('data-page')
             fetch_tags(page, per_page, query_name, query_slug, sort_by, sort_type)
         }
