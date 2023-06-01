@@ -27,7 +27,7 @@ function frontendroutes(){
 
 	// Home Route
 	Route::get('/', function () {
-			// return redirect('/admin'); 
+			 return redirect('/admin'); 
 	} );
 	// Fornt End Post Route:
 	Route::get('/news/{post_id}/{post_slug}', function ($post_id) {  });
