@@ -3,31 +3,64 @@
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Frontend\TagController as FrontendTagController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/setlanguage/{ln}', function ($ln) {
-	if (in_array($ln, config('app.locales'))) {	session(['locale' => $ln]);	}
-	return redirect()->back();
-});
-
-Route::get('/', function () {	return redirect('/admin'); } );
 
 
-// Authentication
+/*
+|--------------------------------------------------------------------------
+| FORNTEND ROUTES
+|--------------------------------------------------------------------------
+*/
+
+// Frontend Routes without any language prefix
+frontendroutes();
+// Frontend Routes with language prefix // don't include default locale in lang array
+Route::group([ 'prefix' => '/{lang}', 'where' => ['lang' => 'bn|ar|hn|au'] ],function (){ frontendroutes(); });
+
+
+
+function frontendroutes(){
+
+	// Home Route
+	Route::get('/', function () {
+			// return redirect('/admin'); 
+	} );
+	// Fornt End Post Route:
+	Route::get('/news/{post_id}/{post_slug}', function ($post_id) {  });
+	// Fornt End Post-Category Route:
+	Route::get('/category/{category_slug}', function ($category_slug) {  });
+	// Fornt End Post-Tag Route:
+	Route::get('/tag/{tag_slug}', function ($tag_slug) {  });
+	Route::get('/tags', [FrontendTagController::class,'index']);
+
+}
+
+
+// Authentication Routes
 Route::get('/register', [AuthController::class, 'showUserRegistrationPage'])->name('showUserRegistrationPage');
 Route::post('/register', [AuthController::class, 'registerUser'])->name('registerUser');
 Route::get('/login', [AuthController::class, 'showloginPage'])->name('showloginPage');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 Route::get('/logout',[AuthController::class ,'logout'])->name('logout'); 
 
 
+// Admin Routes:
+Route::middleware(['auth','checkAndSetLanguage'])->group(function(){
 
-Route::middleware('auth')->group(function(){
+
+	// Language switcher route
+	Route::get('/admin/setlanguage/{ln}', function ($ln) {
+		if (in_array($ln, config('app.locales'))) {	session(['locale' => $ln]);	}
+		return redirect()->back();
+	});
 
 	// Dashboard
 	Route::get('/admin', [DashboardController::class, 'overview']);
+
 
 	// Tag
 	Route::get('/admin/tags', [TagController::class, 'index'])->name('admin.tag.index');
@@ -39,3 +72,6 @@ Route::middleware('auth')->group(function(){
 	Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');
 
 });
+
+
+

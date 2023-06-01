@@ -40,7 +40,9 @@ input[type=checkbox] {
 
 .fill-sb1{ fill:#0084ff !important;}
 .cursor-pointer{ cursor: pointer;}
-
+.admin-single-view .form-control:disabled{
+    background: #ffffff !important;
+}
 .flex-center{
     display: flex;
     justify-content: center;
@@ -363,3 +365,4 @@ svg {
     transform: translate(-50%, -50%);
     position: absolute;
 }
+

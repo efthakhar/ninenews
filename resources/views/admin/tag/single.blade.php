@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div>
+<div class="admin-single-view">
     <div>
         <h3 class="text-capitalize">{{__('messages.tag')}}</h3>
     </div>
