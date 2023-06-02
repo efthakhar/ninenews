@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Frontend\TagController as FrontendTagController;
@@ -70,6 +71,15 @@ Route::middleware(['auth','checkAndSetLanguage'])->group(function(){
 	Route::get('/admin/tags/{id}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
 	Route::put('/admin/tags/{id}', [TagController::class, 'update'])->name('admin.tag.update');
 	Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');
+
+	// Media
+	Route::get('/admin/media', [MediaController::class, 'index'])->name('admin.media.index');
+	// Route::get('/admin/media/create', [MediaController::class, 'create'])->name('admin.media.create');
+	// Route::get('/admin/media/{id}', [MediaController::class, 'show'])->name('admin.media.single');
+	// Route::post('/admin/media', [MediaController::class, 'store'])->name('admin.media.store');
+	// Route::get('/admin/media/{id}/edit', [MediaController::class, 'edit'])->name('admin.media.edit');
+	// Route::put('/admin/media/{id}', [MediaController::class, 'update'])->name('admin.media.update');
+	// Route::delete('/admin/media/{id}', [MediaController::class, 'delete'])->name('admin.media.delete');
 
 });
 

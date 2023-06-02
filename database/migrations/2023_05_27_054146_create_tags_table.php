@@ -18,10 +18,14 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('meta_tag_description')->nullable();
             $table->string('meta_tag_keywords')->nullable();
-            $table->bigInteger('tag_img_id')->nullable();
-            $table->bigInteger('created_by')->nullable();
-            $table->bigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users');
+            // ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users');
+            // ->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 

@@ -27,5 +27,11 @@ return [
 			],
 		],
 	],
+	[
+		'label'       => 'Media',
+		'link'        => '/admin/media',
+		'icon'        => 'ri-folder-2-line',
+		'permissions' => []
+	],
 
 ];

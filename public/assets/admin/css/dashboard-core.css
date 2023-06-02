@@ -221,9 +221,9 @@ svg {
 }
 
 
-.admin-sidebar__links {
+/* .admin-sidebar__links {
     padding-top: 1rem;
-}
+} */
 
 .admin-sidebar__link_item {
     cursor: pointer;
@@ -231,10 +231,10 @@ svg {
 }
 
 .sidebar__link {
-    text-transform: uppercase;
+    text-transform: capitalize;
     display: flex;
     align-items: center;
-    padding: .6rem 1rem;
+    padding: .3rem .7rem;
     font-size: 1rem ;
     color: #72777a;
     transition: all .2s;
