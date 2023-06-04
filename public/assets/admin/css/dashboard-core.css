@@ -299,6 +299,7 @@ svg {
     border-bottom: 1px solid #dfdfdf;
     position: sticky;
     top: 0%;
+    z-index: 100;
 }
 
 .header-menu-icon i {
@@ -366,3 +367,7 @@ svg {
     position: absolute;
 }
 
+/* Media Index Page */
+.media-item{
+    
+}

@@ -76,10 +76,10 @@ Route::middleware(['auth','checkAndSetLanguage'])->group(function(){
 	Route::get('/admin/media', [MediaController::class, 'index'])->name('admin.media.index');
 	// Route::get('/admin/media/create', [MediaController::class, 'create'])->name('admin.media.create');
 	// Route::get('/admin/media/{id}', [MediaController::class, 'show'])->name('admin.media.single');
-	// Route::post('/admin/media', [MediaController::class, 'store'])->name('admin.media.store');
+	Route::post('/admin/media', [MediaController::class, 'store'])->name('admin.media.store');
 	// Route::get('/admin/media/{id}/edit', [MediaController::class, 'edit'])->name('admin.media.edit');
 	// Route::put('/admin/media/{id}', [MediaController::class, 'update'])->name('admin.media.update');
-	// Route::delete('/admin/media/{id}', [MediaController::class, 'delete'])->name('admin.media.delete');
+	Route::delete('/admin/media/{id}', [MediaController::class, 'delete'])->name('admin.media.delete');
 
 });
 

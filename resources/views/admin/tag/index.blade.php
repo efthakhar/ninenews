@@ -101,5 +101,5 @@
 
 
 @section('footer-script')
-@vite("resources/assets/admin/js/tag.js")
+<script src="{{asset('assets/admin/js/tag.js')}}"></script>
 @endsection

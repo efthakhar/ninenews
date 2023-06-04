@@ -184,6 +184,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Plank\Mediable\MediableServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -199,6 +200,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
     ])->toArray(),
 
 ];
