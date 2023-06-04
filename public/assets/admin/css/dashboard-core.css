@@ -184,7 +184,7 @@ svg {
     overflow-y: auto;
     height: 100vh;
     transition: all .3s;
-    z-index: 100;
+    z-index: 200;
 }
 
 .admin-sidebar-hidden {

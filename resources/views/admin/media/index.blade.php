@@ -14,26 +14,23 @@
           </button>
         </span>
     </div>
-    <div class="media-items row">
-    
-      
+    <div class="">
       <div class="mt-5">
-        <div class="row ">    
+        <div class="row media-items">    
           @foreach ($media_items as $media)
-           <div class="media-item p-1 col-md-3 col-sm-4">
+           <div class="media-item p-1 col-md-3 col-sm-4" data-id="{{$media->id}}" >
             <div class="card " style="height:100% !important">
               <img src="{{ $media->getUrl() }}" class="card-img-top" alt="{{ $media->filename }}">
-              <div class="card-body p-1">
-                <a href="{{ $media->getUrl() }}" class="p">{{ $media->filename }}</a>
-                <br>
-                <span class="btn btn-sm btn-info">{{ round(($media->size/1000),2)}} kb</span>
-                <form action="{{ route('admin.media.delete', $media->id) }}" method="POST" class="delete-media-form d-inline">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-sm btn-danger" 
-                  class="delete-media-item"><i class="ri-delete-bin-line h6"></i>
-                  </button>
-                </form>
+              <div class="card-body p-1 d-flex flex-column justify-content-between">
+                <div>
+                  <a href="{{ $media->getUrl() }}" class="p">{{ $media->filename }}</a>
+                </div>
+                <div>
+                    <span class="btn btn-sm btn-info">{{ round(($media->size/1000),2)}} kb</span>
+                    <button class="btn btn-sm btn-danger delete-media-item" data-id="{{$media->id}}">
+                     Delete
+                    </button>
+                </div>
               </div>
             </div>
            </div>

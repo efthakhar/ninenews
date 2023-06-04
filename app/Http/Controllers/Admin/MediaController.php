@@ -12,7 +12,7 @@ class MediaController extends Controller {
 
 	public function index(Request $request) {
 		return view('admin.media.index',[
-			'media_items'=> Media::inDirectory('public','media')->paginate(10)
+			'media_items'=> Media::inDirectory('public','media')->paginate(12)
 		]);
 	}
 
@@ -36,23 +36,35 @@ class MediaController extends Controller {
 				if ($request->hasFile('files'.$x)) 
 				{
 					$file      = $request->file('files'.$x);
+					$fileName = str_replace(
+						".".$file->getClientOriginalExtension(),
+						" ",
+						$file->getClientOriginalName()
+					);
 
-					$uploaded_media_path = 
+					$uploaded_file = 
 					MediaUploader::fromSource($file)
 					->toDirectory('media')
-					->useFilename($uploaded_by.time()."-".$file->getClientOriginalName())
-					//->setMaximumSize(9999999)
-
+					->useFilename($fileName)
+					->onDuplicateIncrement()
 					->upload();
 					//
-					//array_push($uploaded_media,$uploaded_media_path);
+					$media = Media::find($uploaded_file->id);
+					array_push($uploaded_media,
+						[
+							'url' => $media->getUrl(),
+							'id' => $media->id,
+							'filename'=> $media->filename,
+						    'size'=> $media->size
+						]
+					);
 					
-				}
+				} 
 
 			}
 	
 			return response()->json([
-				'success'=>'Ajax Multiple fIle has been uploaded',
+				// 'success'=>'Ajax Multiple fIle has been uploaded',
 				'files' => $uploaded_media
 			]);
 	
@@ -70,12 +82,19 @@ class MediaController extends Controller {
 	}
 	function delete($id) {
 
-	   $id  = explode(',',$id);
-	   // $id = Media::pluck('id');
-	   foreach ($id as $i) {
-		   Media::find($i)->delete();
-	   }
-	   return redirect()->back();
+		try {
+			$id  = explode(',',$id);
+			foreach ($id as $i) {
+				Media::find($i)->delete();
+			}
+		} catch (\Throwable $th) {		
+			return response()->json([
+				'success' => false
+			],500);
+		}
+		return response()->json([
+			'success' => true
+		],204);
 
    }
 }
