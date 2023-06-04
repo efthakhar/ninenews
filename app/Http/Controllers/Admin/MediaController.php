@@ -71,7 +71,7 @@ class MediaController extends Controller {
 	function delete($id) {
 
 	   $id  = explode(',',$id);
-	//    $id = Media::pluck('id');
+	   // $id = Media::pluck('id');
 	   foreach ($id as $i) {
 		   Media::find($i)->delete();
 	   }

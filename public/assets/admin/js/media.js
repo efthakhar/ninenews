@@ -38,7 +38,6 @@ $(function () {
                 location.reload()
             },
             error: function (data) {
-                //console.log(data.responseJSON.errors.files[0]);
                 console.log(data);
             }
         });
