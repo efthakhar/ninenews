@@ -26,7 +26,7 @@
                   <a href="{{ $media->getUrl() }}" class="p">{{ $media->filename }}</a>
                 </div>
                 <div>
-                    <span class="btn btn-sm btn-info">{{ round(($media->size/1000),2)}} kb</span>
+                    <span class="btn btn-sm btn-primary">{{ round(($media->size/1000),2)}} kb</span>
                     <button class="btn btn-sm btn-danger delete-media-item" data-id="{{$media->id}}">
                      Delete
                     </button>
@@ -42,6 +42,7 @@
       </div>
     </div>
 </div>
+@include('admin.partials.delete-confirmbox')
 @endsection
 
 @section('footer-script')

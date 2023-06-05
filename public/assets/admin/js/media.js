@@ -72,15 +72,20 @@ $(function () {
 
     $(document).on('click','.delete-media-item', function(e){
 
-        let media_id = e.target.getAttribute('data-id')
-        let url = window.location.origin + `/admin/media/${media_id}`
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            success: function (data) {
-                e.target.closest('.media-item').remove()
-            }
+        e.preventDefault()
+        showConfirmbox().then((confirmed) => {  
+            if(confirmed == false){ return }
+            let media_id = e.target.getAttribute('data-id')
+            let url = window.location.origin + `/admin/media/${media_id}`
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (data) {
+                    e.target.closest('.media-item').remove()
+                }
+            });
         });
+
     });
 
 
