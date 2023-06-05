@@ -4,15 +4,23 @@
 <div class="admin-media-index">
     <div class="d-flex flex-wrap">
         <h3 class="h4">Media Items</h3>
-        <form  class="d-none" action="" enctype="multipart/form-data" id="file-upload" >
-          <input type="file" name="files[]" id="files" multiple>
-        </form>
-        <span class="ms-auto open-file-upload-window">
-          <button class="btn btn-sm btn-outline-primary border border-2 rounded h5">
-            <i class="ri-upload-2-fill me-1"></i>
-           <span> Upload Media</span>
-          </button>
-        </span>
+        <div class="d-flex flex-column align-items-end ms-auto">
+          <div class="media-filter-input">
+            <form  class="" action="{{route('admin.media.index')}}" method="GET"  >
+              <input type="text" class="form-control form-control-sm my-1" name='filename' id="filename"
+              value="{{ isset($_GET['filename']) ? $_GET['filename']:'' }}"  placeholder="type & enter" >
+            </form>
+          </div>
+          <span class="open-file-upload-window">
+            <button class="btn btn-sm btn-outline-primary border border-2 rounded h5">
+              <i class="ri-upload-2-fill me-1"></i>
+             <span> Upload Media</span>
+            </button>
+          </span>
+          <form  class="d-none" action="" enctype="multipart/form-data" id="file-upload" >
+            <input type="file" name="files[]" id="files" multiple>
+          </form>
+        </div>
     </div>
     <div class="">
       <div class="mt-5">
