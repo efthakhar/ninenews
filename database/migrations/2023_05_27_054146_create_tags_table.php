@@ -18,14 +18,19 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('meta_tag_description')->nullable();
             $table->string('meta_tag_keywords')->nullable();
+            $table->string('lang',10);
+            $table->string('post_type',20);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('created_by')->references('id')->on('users');
-            // ->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreign('updated_by')->references('id')->on('users');
-            // ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreign('created_by')->references('id')->on('users')
+            ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')
+            ->cascadeOnUpdate()->restrictOnDelete();
+
+            $table->unique(['name','post_type']);
+            $table->unique(['slug','post_type']);
         });
     }
 

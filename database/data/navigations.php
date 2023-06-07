@@ -8,6 +8,26 @@ return [
 		'permissions' => []
 	],
 	[
+		'label'       => 'Category',
+		'link'        => '/admin/categories',
+		'icon'        => 'ri-stack-fill',
+		'permissions' => [],
+		'sublinks'    => [
+			[
+				'label'       => 'All Categories',
+				'link'        => '/admin/categories',
+				'icon'        => 'ri-arrow-right-fill',
+				'permissions' => [],
+			],
+			[
+				'label'       => 'New Tag',
+				'link'        => '/admin/categories/create',
+				'icon'        => 'ri-arrow-right-fill',
+				'permissions' => [],
+			],
+		],
+	],
+	[
 		'label'       => 'Tag',
 		'link'        => '/admin/tags',
 		'icon'        => 'ri-price-tag-3-line',
@@ -16,13 +36,13 @@ return [
 			[
 				'label'       => 'All Tag',
 				'link'        => '/admin/tags',
-				'icon'        => 'overview',
+				'icon'        => 'ri-arrow-right-fill',
 				'permissions' => [],
 			],
 			[
 				'label'       => 'New Tag',
 				'link'        => '/admin/tags/create',
-				'icon'        => 'flash',
+				'icon'        => 'ri-arrow-right-fill',
 				'permissions' => [],
 			],
 		],
