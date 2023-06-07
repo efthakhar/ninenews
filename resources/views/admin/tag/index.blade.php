@@ -43,6 +43,10 @@
         <label for="">language</label>
         {{ generate_language_options('language','tag-filter-form-language', $_GET['language']??'', true,"form-control form-control-sm my-1") }}
       </div>
+      <div class="form-item col-sm-4 col-md-2">
+        <label for="">post type</label>
+        {{ generate_posttype_options('posttype','tag-filter-form-posttype', $_GET['posttype']??'', true,"form-control form-control-sm my-1") }}
+      </div>
       <button  type="submit" class="d-none">Apply Filter</button>
     </form>
   </div>

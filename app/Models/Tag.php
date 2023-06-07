@@ -13,7 +13,10 @@ class Tag extends Model {
 		'description',
 		'meta_tag_description',
 		'meta_tag_keywords',
+		'lang',
+		'post_type',
 		'created_by',
+		'updated_by',
 		'tag_img_id',
 	];
 }

@@ -54,3 +54,16 @@ function generate_language_options($name, $id, $selected_value, $blank_option, $
 	generate_select_input($name, $id, $selected_value, $options, $css_classes);
 }
 
+function generate_posttype_options($name, $id, $selected_value, $blank_option, $css_classes = '') {
+
+	$options = (true == $blank_option) ?  [ ['label' => 'All', 'value' => ''] ] : [];
+	$options = array_merge($options, [
+		['label'=>'article','value'=>'article'],
+		['label'=>'video','value'=>'video'],
+		['label'=>'gallery','value'=>'gallery'],
+		['label'=>'audio','value'=>'audio'],
+	]);
+	$selected_value = empty($selected_value) ? '' : $selected_value;
+	generate_select_input($name, $id, $selected_value, $options, $css_classes);
+}
+

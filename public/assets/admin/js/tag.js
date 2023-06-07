@@ -1,6 +1,6 @@
 $(function () {
 
-    $('#tag-filter-form-perpage, #tag-filter-form-sortby, #tag-filter-form-sorttype, #tag-filter-form-language')
+    $('#tag-filter-form-perpage, #tag-filter-form-sortby, #tag-filter-form-sorttype, #tag-filter-form-language,#tag-filter-form-posttype')
         .on('change', function () {
             $('#filter-form').trigger("submit")
         })

@@ -13,6 +13,7 @@ class TagController extends Controller {
 		$this->authorize('view-tags');
 		
 		$qs_language     = $request->query('language');
+		$qs_posttype     = $request->query('posttype');
 		$qs_perpage  = $request->query('perpage') ?? config('app.default_perpage');
 		$qs_name     = $request->query('name');
 		$qs_slug     = $request->query('slug');
@@ -24,6 +25,9 @@ class TagController extends Controller {
 		$tags
 		->when($qs_language, function ($query, $qs_language ) {
 			$query->where('lang', '=',  $qs_language );
+		})
+		->when($qs_posttype, function ($query, $qs_posttype ) {
+			$query->where('post_type', '=',  $qs_posttype );
 		})
 		->when($qs_name, function ($query, $qs_name ) {
 			$query->where('name', 'LIKE', '%' . $qs_name . '%');
@@ -74,6 +78,8 @@ class TagController extends Controller {
 		$request->merge(['slug' => $slug]);
 
 		$validatedData = $request->validate([
+			'lang'                 => 'required',
+			'post_type'            => 'required',
 			'name'                 => 'required|unique:tags|max:30',
 			'slug'                 => 'unique:tags|max:30',
 			'description'          => 'string|nullable',
@@ -106,6 +112,8 @@ class TagController extends Controller {
 		$request->merge(['slug' => $slug]);
 
 		$validatedData = $request->validate([
+			'lang'                 => 'required',
+			'post_type'            => 'required',
 			'name'                 => ['required', Rule::unique('tags')->ignore($id), 'max:30'],
 			'slug'                 => [Rule::unique('tags')->ignore($id), 'max:30'],
 			'description'          => 'string|nullable',
