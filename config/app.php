@@ -99,6 +99,12 @@ return [
     'locale' => 'en',
     'locales' => ['en', 'bn'],
 
+    'locales_label_value_pairs' => [
+		['label'=>'english','value'=>'en'],
+		['label'=>'bangla','value'=>'bn'],
+	],
+    'locales_string_except_default' => 'bn|ar|pk|hn|ru', 
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

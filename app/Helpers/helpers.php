@@ -46,10 +46,7 @@ function generate_perpage_options($name, $id, $selected_value, $css_classes = ''
 function generate_language_options($name, $id, $selected_value, $blank_option, $css_classes = '') {
 
 	$options = (true == $blank_option) ?  [ ['label' => 'All', 'value' => ''] ] : [];
-	$options = array_merge($options, [
-		['label'=>'english','value'=>'en'],
-		['label'=>'bangla','value'=>'bn'],
-	]);
+	$options = array_merge($options, config('app.locales_label_value_pairs'));
 	$selected_value = empty($selected_value) ? '' : $selected_value;
 	generate_select_input($name, $id, $selected_value, $options, $css_classes);
 }

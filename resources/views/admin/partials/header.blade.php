@@ -7,8 +7,8 @@
             <i class="ri-global-fill h3 text-sb1"></i>
         </span>
         <ul  class="dropdown-menu  p-0 " aria-labelledby="language-switcher-dropdown" >
-            @foreach(config('app.locales') as $ln)
-            <a href="/admin/setlanguage/{{$ln}}" class="{{ config('app.locale')==$ln?' active':'' }} dropdown-item " >  {{$ln}} </a>
+            @foreach(config('app.locales_label_value_pairs') as $ln)
+            <a href="/admin/setlanguage/{{$ln['value']}}" class="{{ config('app.locale')==$ln['value'] ? ' active':'' }} dropdown-item " >  {{$ln['label']}} </a>
             @endforeach
         </ul>
     </div>

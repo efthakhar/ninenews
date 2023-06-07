@@ -5,14 +5,20 @@
 
 
 
-  <div class="">
+  <div class="d-flex flex-wrap">
     <h4 class="h4 text-capitalize"> {{ __('messages.tags') }} </h4>
-    <div class="ms-auto d-flex ">
-        <a href="/admin/tags/create" class="btn btn-sm btn-primary ms-auto m-1 " role="button">
-          <i class="ri-add-fill h5"></i>
-          <span class="d-none d-sm-inline ms-1"> Add New</span>
-        </a>
-    </div>
+    
+    {{-- <button class="btn btn-sm btn-secondary ms-auto m-1" >
+      <i class="ri-filter-2-fill"></i>
+      <span class="d-none d-sm-inline ms-1">Filter</span>
+    </button> --}}
+    <a href="/admin/tags/create" class="ms-auto">
+      <button class="btn btn-sm btn-primary m-1">
+        <i class="ri-add-fill"></i>
+        <span class="d-none d-sm-inline ms-1"> Add New</span>
+      </button>
+    </a>
+    
   </div>
 
   <div class="filter-form-container mt-2">
