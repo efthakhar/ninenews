@@ -6,7 +6,7 @@
         <span class="cursor-pointer" id="language-switcher-dropdown" data-bs-toggle="dropdown">
             <i class="ri-global-fill h3 text-sb1"></i>
         </span>
-        <ul  class="dropdown-menu  p-0 " aria-labelledby="language-switcher-dropdown" >
+        <ul  class="dropdown-menu fit-content p-0 " aria-labelledby="language-switcher-dropdown">
             @foreach(config('app.locales_label_value_pairs') as $ln)
             <a href="/admin/setlanguage/{{$ln['value']}}" class="{{ config('app.locale')==$ln['value'] ? ' active':'' }} dropdown-item " >  {{$ln['label']}} </a>
             @endforeach

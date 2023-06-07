@@ -367,7 +367,9 @@ svg {
     position: absolute;
 }
 
-/* Media Index Page */
-.media-item{
-    
+
+
+/* Dropdown Menu Bootstrap Width */
+.dropdown-menu.fit-content{
+    min-width: fit-content;
 }

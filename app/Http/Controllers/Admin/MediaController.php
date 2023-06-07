@@ -18,7 +18,7 @@ class MediaController extends Controller {
 				->when($qs_name, function ($query, $qs_name ) {
 					$query->where('filename', 'LIKE', '%' . $qs_name . '%');
 				})
-				->paginate(4)->appends($request->query()),
+				->paginate(10)->appends($request->query()),
 		]);
 	}
 
