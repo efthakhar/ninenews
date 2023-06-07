@@ -10,6 +10,13 @@
             @csrf
             <div class="row">
                 <div class="form_item col-md-6">
+                    <label class="mt-3 mb-1">Language</label>
+                    @error('language')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror 
+                    {{ generate_language_options('language','language', $_GET['language']??'',false,"form-control") }}
+                </div>
+                <div class="form_item col-md-6">
                     <label class="mt-3 mb-1">Tag name</label>
                     @error('name')
                     <p class="text-danger">{{ $message }}</p>

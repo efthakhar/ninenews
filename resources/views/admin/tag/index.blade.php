@@ -39,6 +39,10 @@
         <label for="">sort type</label>
         {{ generate_select_input("sorttype", "tag-filter-form-sorttype", $_GET['sorttype']??"", $sort_type_options, "form-select form-select-sm  my-1")}} 
       </div>
+      <div class="form-item col-sm-4 col-md-2">
+        <label for="">language</label>
+        {{ generate_language_options('language','tag-filter-form-language', $_GET['language']??'', true,"form-control form-control-sm my-1") }}
+      </div>
       <button  type="submit" class="d-none">Apply Filter</button>
     </form>
   </div>
