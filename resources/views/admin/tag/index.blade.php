@@ -67,6 +67,8 @@
             </th> --}}
             <th scope="col" class="mw100px">Name</th>
             <th scope="col" class="mw200px">Slug</th>
+            <th scope="col" class="mw200px">Language</th>
+            <th scope="col" class="mw200px">Post Type</th>
             <th scope="col" class="mw200px">Action</th>
           </tr>
         </thead>
@@ -78,6 +80,8 @@
             </td> --}}
             <td>{{$tag->name}}</td>
             <td>{{$tag->slug}}</td>
+            <td>{{$tag->lang}}</td>
+            <td>{{$tag->post_type}}</td>
             <td>
               <div class="d-flex justify-center align-center">
                 <a href="{{ route('admin.tag.single', $tag->id) }}" class="btn btn-sm p-0 text-info mx-1">

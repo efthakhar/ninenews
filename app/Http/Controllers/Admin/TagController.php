@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use App\Rules\CombineUnique;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class TagController extends Controller {
 	public function index(Request $request) {
-
 		$this->authorize('view-tags');
-		
-		$qs_language     = $request->query('language');
-		$qs_posttype     = $request->query('posttype');
+
+		$qs_language = $request->query('language');
+		$qs_posttype = $request->query('posttype');
 		$qs_perpage  = $request->query('perpage') ?? config('app.default_perpage');
 		$qs_name     = $request->query('name');
 		$qs_slug     = $request->query('slug');
@@ -23,22 +23,22 @@ class TagController extends Controller {
 		$tags = Tag::query();
 
 		$tags
-		->when($qs_language, function ($query, $qs_language ) {
-			$query->where('lang', '=',  $qs_language );
-		})
-		->when($qs_posttype, function ($query, $qs_posttype ) {
-			$query->where('post_type', '=',  $qs_posttype );
-		})
-		->when($qs_name, function ($query, $qs_name ) {
-			$query->where('name', 'LIKE', '%' . $qs_name . '%');
-		})
-		->when($qs_slug, function ($query, $qs_slug ) {
-			$query->where('slug', 'LIKE', '%' . $qs_slug . '%');
-		})->when($qs_sortby, function ($query, $qs_sortby) use ($qs_sorttype) {
-			$query->orderby($qs_sortby, $qs_sorttype);
-		}, function ($query) use ($qs_sorttype) {
-			$query->orderBy('id', $qs_sorttype);
-		});
+			->when($qs_language, function ($query, $qs_language ) {
+				$query->where('lang', '=', $qs_language );
+			})
+			->when($qs_posttype, function ($query, $qs_posttype ) {
+				$query->where('post_type', '=', $qs_posttype );
+			})
+			->when($qs_name, function ($query, $qs_name ) {
+				$query->where('name', 'LIKE', '%' . $qs_name . '%');
+			})
+			->when($qs_slug, function ($query, $qs_slug ) {
+				$query->where('slug', 'LIKE', '%' . $qs_slug . '%');
+			})->when($qs_sortby, function ($query, $qs_sortby) use ($qs_sorttype) {
+				$query->orderby($qs_sortby, $qs_sorttype);
+			}, function ($query) use ($qs_sorttype) {
+				$query->orderBy('id', $qs_sorttype);
+			});
 
 		return view('admin.tag.index', [
 			'tags'         => $tags->paginate($qs_perpage)->appends($request->query()),
@@ -57,20 +57,19 @@ class TagController extends Controller {
 
 	public function show($id) {
 		$this->authorize('view-tags');
+
 		return view('admin.tag.single', [
 			'tag' => Tag::find($id),
 		]);
 	}
 
 	public function create() {
-
 		$this->authorize('create-tags');
 
 		return view('admin.tag.create');
 	}
 
 	public function store(Request $request) {
-
 		$this->authorize('create-tags');
 
 		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
@@ -78,10 +77,18 @@ class TagController extends Controller {
 		$request->merge(['slug' => $slug]);
 
 		$validatedData = $request->validate([
-			'lang'                 => 'required',
-			'post_type'            => 'required',
-			'name'                 => 'required|unique:tags|max:30',
-			'slug'                 => 'unique:tags|max:30',
+			'lang'      => 'required',
+			'post_type' => 'required',
+			'name'      => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'tags', 'name must be unique'),
+			],
+			'slug' => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'tags', 'slug must be unique'),
+			],
 			'description'          => 'string|nullable',
 			'meta_tag_description' => 'string|nullable',
 			'meta_tag_keywords'    => 'string|nullable',
@@ -95,7 +102,6 @@ class TagController extends Controller {
 	}
 
 	public function edit($id) {
-
 		$this->authorize('update-tags');
 
 		return view('admin.tag.edit', [
@@ -104,8 +110,7 @@ class TagController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
-
-        $this->authorize('view-tags');
+		$this->authorize('view-tags');
 
 		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
 
@@ -114,8 +119,16 @@ class TagController extends Controller {
 		$validatedData = $request->validate([
 			'lang'                 => 'required',
 			'post_type'            => 'required',
-			'name'                 => ['required', Rule::unique('tags')->ignore($id), 'max:30'],
-			'slug'                 => [Rule::unique('tags')->ignore($id), 'max:30'],
+			'name'      => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'tags', 'name must be unique',$id),
+			],
+			'slug' => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'tags', 'slug must be unique',$id),
+			],
 			'description'          => 'string|nullable',
 			'meta_tag_description' => 'string|nullable',
 			'meta_tag_keywords'    => 'string|nullable',
@@ -129,8 +142,7 @@ class TagController extends Controller {
 	}
 
 	public function delete($id) {
-
-		$id  = explode(',',$id);
+		$id = explode(',', $id);
 		$this->authorize('delete-tags');
 
 		Tag::whereIn('id', $id)->delete();

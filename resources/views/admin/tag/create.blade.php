@@ -14,14 +14,14 @@
                     @error('lang')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror 
-                    {{ generate_language_options('lang','lang','',false,"form-control") }}
+                    {{ generate_language_options('lang','lang', old('lang') ??'',false,"form-control") }}
                 </div>
                 <div class="form_item col-md-6">
                     <label class="mt-3 mb-1">Post Type</label>
                     @error('post_type')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror 
-                    {{ generate_posttype_options('post_type','post_type','',false,"form-control") }}
+                    {{ generate_posttype_options('post_type','post_type',old('post_type') ??'',false,"form-control") }}
                 </div>
                 <div class="form_item col-md-6">
                     <label class="mt-3 mb-1">Tag name</label>

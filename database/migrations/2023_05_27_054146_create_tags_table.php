@@ -29,8 +29,8 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users')
             ->cascadeOnUpdate()->restrictOnDelete();
 
-            $table->unique(['name','post_type']);
-            $table->unique(['slug','post_type']);
+            $table->unique(['name','post_type','lang']);
+            $table->unique(['slug','post_type','lang']);
         });
     }
 
