@@ -60,14 +60,25 @@
                     @enderror 
                     <textarea name="meta_tag_keywords" class="form-control">{{old('meta_tag_keywords')}}</textarea>
                 </div>
+                <div class="form_item col-md-12 my-2">
+                    <label class="mt-3 mb-1">Tag Image</label>
+                    <span class="btn btn-dark btn-sm ms-2 media-window-open-btn">
+                        <i class="ri-image-add-fill"></i>
+                        Add Image
+                    </span>
+                </div>
             </div>
 
             <div class="submit-form-btn-container">
-                <button type="submit" class="btn btn-primary mt-3">
+                <button type="submit" class="btn btn-primary mt-3 ">
                     Save Data
                 </button>
             </div>
         </form>
     </div>
 </div>
+@endsection
+
+@section('footer-script')
+<script src="{{asset('assets/admin/js/media-window.js')}}"></script>
 @endsection

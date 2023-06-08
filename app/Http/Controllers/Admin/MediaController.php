@@ -11,14 +11,37 @@ use Throwable;
 class MediaController extends Controller {
 
 	public function index(Request $request) {
+
 		$qs_name = $request->query('filename');
 
+		$media_items = Media::inDirectory('public', 'media')
+			->when($qs_name, function ($query, $qs_name ) {
+				$query->where('filename', 'LIKE', '%' . $qs_name . '%');
+			})
+			->orderby('id','desc')
+			->paginate(15)->appends($request->query());
+
+		if ($request->ajax()) {
+
+			$media  = [];
+			foreach($media_items as $media_item){
+				$media[] = [
+					'id' => $media_item->id,
+					'filename' => $media_item->filename,
+					'url' => $media_item->getUrl(),
+					'extension' => $media_item->extension,
+					'size' => $media_item->size,
+				];
+			}
+			return response()->json([
+				'media' => $media,
+				'last_page' => $media_items->lastPage(),
+				'current_page' => $media_items->currentPage(),
+			]);
+		}
+
 		return view('admin.media.index', [
-			'media_items' => Media::inDirectory('public', 'media')
-				->when($qs_name, function ($query, $qs_name ) {
-					$query->where('filename', 'LIKE', '%' . $qs_name . '%');
-				})
-				->paginate(10)->appends($request->query()),
+			'media_items' => $media_items,
 		]);
 	}
 

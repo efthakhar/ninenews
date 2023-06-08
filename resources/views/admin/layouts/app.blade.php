@@ -27,6 +27,8 @@
         </div>
 
     </div>
+
+    <div class="popups-wrapper"></div>
     
     <script src="{{asset('common/js/jquery.js')}}"></script>
     <script src="{{asset('common/js/bootstrap.js')}}"></script>
