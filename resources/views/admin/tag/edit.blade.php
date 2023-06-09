@@ -66,6 +66,27 @@
                     @enderror 
                     <textarea name="meta_tag_keywords" class="form-control">{{  old('meta_tag_keywords') ?? $tag->meta_tag_keywords}}</textarea>
                 </div>
+                <div class="form_item col-md-12 my-2">
+                    <label class="mt-3 mb-1">Tag Image</label>
+                    <div id="tag_thumbnail_img_container" class="inserted_img_container">
+                        @if($tag->firstMedia('thumbnail')!=NULL)
+                            <div class="inserted_img">
+                                <input type="hidden" name="tag_thumbnail" 
+                                value="{{ $tag->firstMedia('thumbnail')!=NULL?$tag->firstMedia('thumbnail')->id:''}}">
+                                <img
+                                src="{{ $tag->firstMedia('thumbnail')!=NULL?$tag->firstMedia('thumbnail')->getUrl():''}}"
+                                />
+                                <span class="cross-btn p-0"> 
+                                    {{cross_svg()}}
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+                    <span class="btn btn-dark btn-sm media-window-open-btn mt-1">
+                        <i class="ri-image-add-fill"></i>
+                        Add Image
+                    </span>
+                </div>
             </div>
 
             <div class="submit-form-btn-container">
@@ -76,4 +97,9 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('footer-script')
+<script src="{{asset('assets/admin/js/media-window.js')}}"></script>
+<script src="{{asset('assets/admin/js/tag.js')}}"></script>
 @endsection

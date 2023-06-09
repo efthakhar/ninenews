@@ -41,7 +41,7 @@ class TagController extends Controller {
 			});
 
 		return view('admin.tag.index', [
-			'tags'         => $tags->paginate($qs_perpage)->appends($request->query()),
+			'tags'         => $tags->withMedia()->paginate($qs_perpage)->appends($request->query()),
 			'sort_options' => [
 				['label' => 'All', 'value' => ''],
 				['label' => 'name', 'value' => 'name'],
@@ -59,7 +59,7 @@ class TagController extends Controller {
 		$this->authorize('view-tags');
 
 		return view('admin.tag.single', [
-			'tag' => Tag::find($id),
+			'tag' => Tag::with('media')->find($id),
 		]);
 	}
 
@@ -96,7 +96,19 @@ class TagController extends Controller {
 
 		$validatedData['created_by'] = auth()->id();
 
-		Tag::create($validatedData);
+
+		$tag            = new Tag();
+		$tag->name      = $validatedData['name'];
+		$tag->slug      = $validatedData['slug'];
+		$tag->description      = $validatedData['description'];
+		$tag->meta_tag_description      = $validatedData['meta_tag_description'];
+		$tag->meta_tag_keywords      = $validatedData['meta_tag_keywords'];
+		$tag->lang      = $validatedData['lang'];
+		$tag->post_type      = $validatedData['post_type'];
+		
+		$tag->save();
+		$tag->attachMedia($request->tag_thumbnail, 'thumbnail');
+		
 
 		return redirect()->route('admin.tag.index');
 	}
@@ -136,7 +148,19 @@ class TagController extends Controller {
 
 		$validatedData['updated_by'] = auth()->id();
 
-		Tag::where('id', $id)->update($validatedData);
+		//Tag::where('id', $id)->update($validatedData);
+		$tag            = Tag::find($id);
+		$tag->name      = $validatedData['name'];
+		$tag->slug      = $validatedData['slug'];
+		$tag->description      = $validatedData['description'];
+		$tag->meta_tag_description      = $validatedData['meta_tag_description'];
+		$tag->meta_tag_keywords      = $validatedData['meta_tag_keywords'];
+		$tag->lang      = $validatedData['lang'];
+		$tag->post_type      = $validatedData['post_type'];
+		
+		$tag->save();
+		$tag->detachMediaTags('thumbnail');
+		$tag->attachMedia($request->tag_thumbnail, 'thumbnail');
 
 		return redirect()->route('admin.tag.edit', $id)->with('tagUpdateSuccess', 'Tag Updated Successfully');
 	}
@@ -145,8 +169,11 @@ class TagController extends Controller {
 		$id = explode(',', $id);
 		$this->authorize('delete-tags');
 
-		Tag::whereIn('id', $id)->delete();
-
+		foreach($id as $i){
+			$tag = Tag::find($i);
+			$tag->delete();
+		}
+		//Tag::whereIn('id', $id)->delete();
 		return redirect()->back();
 	}
 }

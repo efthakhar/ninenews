@@ -3,8 +3,6 @@
 @section('content')
 <div>
 
-
-
   <div class="d-flex flex-wrap">
     <h4 class="h4 text-capitalize"> {{ __('messages.tags') }} </h4>
     
@@ -56,7 +54,7 @@
       <button  type="submit" class="d-none">Apply Filter</button>
     </form>
   </div>
-
+ 
   <div class="admin-main-content-table-container mt-4">
     <div class="table-responsive">
       <table class="table table-bordered" >
@@ -65,6 +63,7 @@
             {{-- <th scope="col" class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </th> --}}
+            <th scope="col">#</th>
             <th scope="col" class="mw100px">Name</th>
             <th scope="col" class="mw200px">Slug</th>
             <th scope="col" class="mw200px">Language</th>
@@ -78,6 +77,7 @@
             {{-- <td class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </td> --}}
+            <td><img src="{{ $tag->firstMedia('thumbnail')!=NULL ? $tag->firstMedia('thumbnail')->getUrl(): '' }} " alt="" style="width:50px;height:50px"></td>
             <td>{{$tag->name}}</td>
             <td>{{$tag->slug}}</td>
             <td>{{$tag->lang}}</td>

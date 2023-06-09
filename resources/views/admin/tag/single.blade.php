@@ -28,6 +28,17 @@
             <label class="mt-3 mb-1">Meta keywords</label> 
             <textarea disabled  name="meta_tag_keywords" class="form-control">{{$tag->meta_tag_keywords}}</textarea>
         </div>
+        <div class="form_item col-md-12 my-2">
+            <label class="mt-3 mb-1">Tag Image</label>
+            <div id="tag_thumbnail_img_container" class="inserted_img_container">
+                <div class="inserted_img">
+                    <input type="hidden" name="tag_thumbnail" value="1">
+                    <img
+                    src="{{ $tag->firstMedia('thumbnail')!=NULL?$tag->firstMedia('thumbnail')->getUrl():''}}"
+                     />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
