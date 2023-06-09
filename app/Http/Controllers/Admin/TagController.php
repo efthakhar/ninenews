@@ -173,7 +173,6 @@ class TagController extends Controller {
 			$tag = Tag::find($i);
 			$tag->delete();
 		}
-		//Tag::whereIn('id', $id)->delete();
 		return redirect()->back();
 	}
 }

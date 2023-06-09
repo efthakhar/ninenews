@@ -1,5 +1,11 @@
 // $(function () {
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     let select_multiple = false
     let selected_media = { }
     let current_page = 1
@@ -33,8 +39,16 @@
                             <i class="ri-loader-2-line"></i> load more
                         </button>
                         <div class="mb-5"></div>
-                        <div class="media-window-actionbar border-top bg-white p-1 d-flex flex-wrap">
+                        <div class="media-window-actionbar border-top bg-white p-1 d-flex flex-wrap align-items-center">
                             <input type="text" class="" id='filename_search' placeholder="serach by name...."  >
+                            <div class="mx-2">
+                                <span class="mx-1 btn btn-outline-danger btn-sm media-window-bulk-delete-btn">
+                                <i class="ri-delete-bin-7-line"></i> delete selected
+                                </span>
+                                <span class="mx-1 btn btn-outline-primary btn-sm media-window-upload-btn">
+                                    <i class="ri-upload-2-fill"></i> upload media
+                                </span>
+                            </div>
                             <div class="ms-auto" >
                                 <span class="btn btn-primary btn-sm insert-selected-media-btn">Insert Selected</span>
                                 <span class="btn btn-danger btn-sm ms-1 close-media-window">Close</span>
@@ -95,7 +109,7 @@
                 let html = ``
                 data.media.forEach(item => {
                     html +=
-                        `<div class="media-window-item p-1 col-md-2 col-sm-4 col-6">
+                        `<div class="media-window-item p-1 col-md-2 col-sm-4 col-6" data-mwid="${item.id}">
                             <div class="card">
                                 <img class="card-img-top" src="${item.url}" alt="Card image cap" data-media-id=${item.id}>
                                 <div class="card-body p-1 bg-light">
@@ -148,18 +162,54 @@
             console.log(selected_media)
         }
 
+
+        // delete selected media items
+        if (e.target.closest('.media-window-bulk-delete-btn')) {
+
+            if(JSON.stringify(selected_media) === "{}"){ return }
+            
+            showConfirmbox().then((confirmed) => {  
+                
+                if(confirmed == false){ return }
+
+                let items_to_delete = [ ]
+
+                Object.keys(selected_media).forEach(key => {
+                    items_to_delete.push(selected_media[key].id)
+                    $(`[data-mwid="${selected_media[key].id}"]`).remove();
+                });
+    
+                items_to_delete = items_to_delete.join(',')
+               
+                let url = window.location.origin + `/admin/media/${items_to_delete}`
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (data) {                
+                        selected_media = { }
+                    }
+                });
+            });
+           
+        }
+
     })
 
     document.addEventListener('keyup', function (e) {
 
         if (e.target.getAttribute('id') == "filename_search") {
 
+            selected_media = { }
+
             clearTimeout(typingTimer);
+
             typingTimer = setTimeout(function () {
+
                 document.getElementById('media-window-items').innerHTML = ''
                 filename_serach = e.target.value
                 fetchMedia(1, filename_serach)
                 clearTimeout(typingTimer);
+
             }, 250);
 
         }

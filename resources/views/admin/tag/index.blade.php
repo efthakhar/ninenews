@@ -113,8 +113,6 @@
     {{$tags->links()}}
   </div>
 
-  @include('admin.partials.delete-confirmbox')
-
 @endsection
 
 

@@ -29,6 +29,8 @@
     </div>
 
     <div class="popups-wrapper"></div>
+    @include('admin.partials.delete-confirmbox')
+
     
     <script src="{{asset('common/js/jquery.js')}}"></script>
     <script src="{{asset('common/js/bootstrap.js')}}"></script>

@@ -50,7 +50,6 @@
       </div>
     </div>
 </div>
-@include('admin.partials.delete-confirmbox')
 @endsection
 
 @section('footer-script')

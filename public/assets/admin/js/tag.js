@@ -18,7 +18,7 @@ $(function () {
 
     $('.media-window-open-btn').on('click', (e) => {
 
-        open_media_window(false)
+        open_media_window(true)
         .then((media)=>{
             // Object.keys(media).forEach(key => {
             //     console.log(media[key])
