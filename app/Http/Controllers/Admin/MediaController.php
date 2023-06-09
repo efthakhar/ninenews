@@ -46,49 +46,39 @@ class MediaController extends Controller {
 	}
 
 	public function store(Request $request) {
+        
 		$uploaded_by = $request->user()->id;
-
 		$uploaded_media = [];
-
 		$validatedData = $request->validate([
-			'files'   => 'required',
-			'files.*' => 'mimes:csv,txt,xlx,xls,pdf,jpg,jpeg',
+			'mw_uploads'   => 'required',
+			'mw_uploads.*' => 'mimes:csv,txt,xlx,xls,pdf,jpg,jpeg',
 		]);
+        
+		foreach ($request->file('mw_uploads') as $file) {
 
-		if ($request->TotalFiles > 0) {
-			for ($x = 0; $x < $request->TotalFiles; ++$x) {
-				if ($request->hasFile('files' . $x)) {
-					$file     = $request->file('files' . $x);
-					$fileName = str_replace('.' . $file->getClientOriginalExtension(), ' ', $file->getClientOriginalName());
+			$fileName = str_replace('.' . $file->getClientOriginalExtension(), ' ', $file->getClientOriginalName());
 
-					$uploaded_file = MediaUploader::fromSource($file)
-						->toDirectory('media')
-						->useFilename($fileName)
-						->onDuplicateIncrement()
-						->upload();
+			$uploaded_file = MediaUploader::fromSource($file)
+				->toDirectory('media')
+				->useFilename($fileName)
+				->onDuplicateIncrement()
+				->upload();
 
-					$media = Media::find($uploaded_file->id);
-					array_push($uploaded_media, [
-						'url'      => $media->getUrl(),
-						'id'       => $media->id,
-						'filename' => $media->filename,
-						'size'     => $media->size,
-					]);
-				}
-			}
-
-			return response()->json([
-				// 'success'=>'Ajax Multiple fIle has been uploaded',
-				'files' => $uploaded_media,
+			$media = Media::find($uploaded_file->id);
+			array_push($uploaded_media, [
+				'url'      => $media->getUrl(),
+				'id'       => $media->id,
+				'filename' => $media->filename,
+				'size'     => $media->size,
+				'extension' => $media->extension,
 			]);
 		}
 
 		return response()->json([
-			'message' => 'Please try again.',
-			'success' => false,
 			'files'   => $uploaded_media,
 		]);
 	}
+
 	public function delete($id) {
 		try {
 			$id = explode(',', $id);

@@ -415,6 +415,9 @@ svg {
     border:1px solid green;
     box-shadow: 1px 1px 5px green;
 }
+
+.media-window-item p{ font-size: 12px;}
+
 .media-window-container  input{ padding: 0 10px; }
 .media-window-container  input:focus{ outline: none; }
 

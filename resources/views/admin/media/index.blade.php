@@ -17,8 +17,8 @@
              <span> Upload Media</span>
             </button>
           </span>
-          <form  class="d-none" action="" enctype="multipart/form-data" id="file-upload" >
-            <input type="file" name="files[]" id="files" multiple>
+          <form  class="d-none" action="" enctype="multipart/form-data" id="mw-upload-form" >
+            <input type="file" name="mw_uploads[]" id="mw_uploads" multiple>
           </form>
         </div>
     </div>

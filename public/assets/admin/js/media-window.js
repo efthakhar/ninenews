@@ -31,6 +31,9 @@
                 `<div class="media-window-container">
                 <div class="media-window">
                     <div class="media-window-inner p-2">
+                        <form  class="d-none" action="" enctype="multipart/form-data" id="mw-upload-form" >
+                            <input type="file" name="mw_uploads[]" id="mw_uploads" multiple>
+                        </form>
                         <div class="media-window-items row" id="media-window-items" >
                             
                         </div>
@@ -159,7 +162,7 @@
             }
 
 
-            console.log(selected_media)
+            // console.log(selected_media)
         }
 
 
@@ -193,7 +196,13 @@
            
         }
 
+        // open file upload pc window
+        if (e.target.closest('.media-window-upload-btn')) {
+            $('#mw_uploads').trigger('click')    
+        }
+
     })
+
 
     document.addEventListener('keyup', function (e) {
 
@@ -213,7 +222,50 @@
             }, 250);
 
         }
-
     })
+
+
+    document.addEventListener('change', function (e) {
+
+        if (e.target.getAttribute('id') == "mw_uploads") {
+
+            e.preventDefault();
+            var formData = new FormData($('#mw-upload-form')[0]);
+   
+        
+            $.ajax({
+                type: 'POST',
+                url: window.location.origin + "/admin/media",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: (data) => {
+                    $('#mw-upload-form')[0].reset();
+                    let html = ``
+                    data.files.forEach(item => {
+                        html +=
+                            `<div class="media-window-item p-1 col-md-2 col-sm-4 col-6" data-mwid="${item.id}">
+                                <div class="card">
+                                    <img class="card-img-top" src="${item.url}" alt="Card image cap" data-media-id=${item.id}>
+                                    <div class="card-body p-1 bg-light">
+                                        <p class="card-text">${item.filename}.${item.extension} </p>
+                                    </div>
+                                </div>
+                        </div>`
+                    });
+
+                    document.querySelector('.media-window-items').insertAdjacentHTML("afterbegin", html)
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+    })
+
+
 
 // });
