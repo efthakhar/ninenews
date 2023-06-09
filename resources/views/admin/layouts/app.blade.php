@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>9news</title>
 
+    <script src="{{asset('assets/language/'.config('app.locale').'.js')}}"></script>
+
     <link rel="stylesheet" href="{{asset('common/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('common/icon-font/remix/remixicon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/dashboard-core.css')}}">
@@ -15,7 +17,7 @@
 </head>
 
 <body>
-    <div class="admin-page">
+    <div class="admin-page" ln={{config('app.locale')}}>
 
         @include('admin.partials.sidebar', $navlinks = get_sidebar_navlinks())
 

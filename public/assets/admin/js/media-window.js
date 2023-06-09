@@ -53,7 +53,7 @@
                                 </span>
                             </div>
                             <div class="ms-auto" >
-                                <span class="btn btn-primary btn-sm insert-selected-media-btn">Insert Selected</span>
+                                <span class="btn btn-primary btn-sm insert-selected-media-btn">Insert</span>
                                 <span class="btn btn-danger btn-sm ms-1 close-media-window">Close</span>
                             </div>
                         </div>

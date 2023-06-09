@@ -1,3 +1,5 @@
+
+
 function showConfirmbox() {
 
     return new Promise((resolve, reject) => {
@@ -25,3 +27,8 @@ let cross_svg =
 $(document).on('click','.inserted_img .cross-btn',function(){
     $(this).closest('.inserted_img').remove()
 })
+
+
+function tr(key) {
+ return lang[key]
+}
