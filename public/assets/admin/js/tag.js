@@ -16,5 +16,28 @@ $(function () {
 
     })
 
+    $('.media-window-open-btn').on('click', (e) => {
+
+        open_media_window(false)
+        .then((media)=>{
+            // Object.keys(media).forEach(key => {
+            //     console.log(media[key])
+            // });
+           if (media){
+                $('#tag_thumbnail_img_container').html('')
+                $('#tag_thumbnail_img_container')
+                .html(
+                `<div class="inserted_img">
+                <input type="hidden" name="tag_thumbnail" value="${media.id}">
+                <img src=${media.src} />
+                <span class="cross-btn p-0"> 
+                    ${cross_svg}
+                </span>
+                </div>`) 
+           }
+
+        })
+    })
+
 
 });

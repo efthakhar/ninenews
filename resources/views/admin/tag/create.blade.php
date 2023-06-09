@@ -62,10 +62,20 @@
                 </div>
                 <div class="form_item col-md-12 my-2">
                     <label class="mt-3 mb-1">Tag Image</label>
-                    <span class="btn btn-dark btn-sm ms-2 media-window-open-btn">
+                    <div id="tag_thumbnail_img_container" class="inserted_img_container">
+                        {{-- <div class="inserted_img">
+                            <input type="hidden" name="tag_thumbnail" value="1">
+                            <img src='http://ninenews.test/storage/media/amazon-20.jpg' />
+                            <span class="cross-btn p-0"> 
+                                {{cross_svg()}}
+                            </span>
+                        </div> --}}
+                    </div>
+                    <span class="btn btn-dark btn-sm media-window-open-btn mt-1">
                         <i class="ri-image-add-fill"></i>
                         Add Image
                     </span>
+                  
                 </div>
             </div>
 
@@ -81,4 +91,5 @@
 
 @section('footer-script')
 <script src="{{asset('assets/admin/js/media-window.js')}}"></script>
+<script src="{{asset('assets/admin/js/tag.js')}}"></script>
 @endsection

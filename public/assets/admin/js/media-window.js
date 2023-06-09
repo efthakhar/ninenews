@@ -1,4 +1,4 @@
-$(function () {
+// $(function () {
 
     let select_multiple = false
     let selected_media = { }
@@ -8,13 +8,6 @@ $(function () {
 
     let typingTimer
 
-    $('.media-window-open-btn').on('click', (e) => {
-
-        open_media_window(true)
-        .then((media)=>{
-            console.log(media)
-        })
-    })
 
     function open_media_window(multiple) {
 
@@ -59,12 +52,17 @@ $(function () {
 
             $(document).on('click', '.close-media-window', function () {
                 document.querySelector('.popups-wrapper').innerHTML = ``
-                resolve({ })
+                resolve(false)
             })
 
             $(document).on('click', '.insert-selected-media-btn', function () {
                 document.querySelector('.popups-wrapper').innerHTML = ``
-                resolve(selected_media)
+                if(select_multiple==true){
+                    resolve(selected_media)
+                }else{
+                    resolve(Object.values(selected_media)[0])
+                }
+                
             })
 
             let mediaWindowInner = document.querySelector('.media-window-inner')
@@ -168,4 +166,4 @@ $(function () {
 
     })
 
-});
+// });

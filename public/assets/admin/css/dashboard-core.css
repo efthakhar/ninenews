@@ -417,3 +417,28 @@ svg {
 }
 .media-window-container  input{ padding: 0 10px; }
 .media-window-container  input:focus{ outline: none; }
+
+/* Style for inserted img */
+.inserted_img_container{
+    display: flex;
+    justify-content: flex-start;
+}
+.inserted_img {
+   margin:3px;
+   position: relative;
+}
+.inserted_img img{
+    width: 130px;
+    height: auto;
+}
+.inserted_img .cross-btn svg{
+ height: 20px;
+ width:20px;
+ fill:white;
+ background-color: rgb(255, 0, 0);
+ margin:0;
+ cursor: pointer;
+ position: absolute;
+ right: 0px;
+ top:0px;
+}
