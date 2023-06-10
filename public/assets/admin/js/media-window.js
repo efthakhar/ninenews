@@ -42,18 +42,20 @@
                             <i class="ri-loader-2-line"></i> load more
                         </button>
                         <div class="mb-5"></div>
-                        <div class="media-window-actionbar border-top bg-white p-1 d-flex flex-wrap align-items-center">
-                            <input type="text" class="" id='filename_search' placeholder="serach by name...."  >
-                            <div class="mx-2">
+                        <div class="media-window-actionbar border-top bg-white p-2 d-flex flex-wrap align-items-center">
+                            <input type="text" class="mx-2 my-1" id='filename_search' placeholder="serach by name...."  >
+                            <div class="mx-2 my-1">
                                 <span class="mx-1 btn btn-outline-danger btn-sm media-window-bulk-delete-btn">
-                                <i class="ri-delete-bin-7-line"></i> delete selected
+                                <i class="ri-delete-bin-7-line"></i> 
+                                <span class="d-none d-sm-inline ms-1"> Delete Selected </span>
                                 </span>
                                 <span class="mx-1 btn btn-outline-primary btn-sm media-window-upload-btn">
-                                    <i class="ri-upload-2-fill"></i> upload media
+                                    <i class="ri-upload-2-fill"></i>
+                                    <span class="d-none d-sm-inline ms-1"> Upload Media </span>
                                 </span>
                             </div>
-                            <div class="ms-auto" >
-                                <span class="btn btn-primary btn-sm insert-selected-media-btn">Insert</span>
+                            <div class="ms-auto m-1" >
+                                <span class="btn btn-primary btn-sm insert-selected-media-btn">Insert Seleted</span>
                                 <span class="btn btn-danger btn-sm ms-1 close-media-window">Close</span>
                             </div>
                         </div>
@@ -112,11 +114,13 @@
                 let html = ``
                 data.media.forEach(item => {
                     html +=
-                        `<div class="media-window-item p-1 col-md-2 col-sm-4 col-6" data-mwid="${item.id}">
-                            <div class="card">
-                                <img class="card-img-top" src="${item.url}" alt="Card image cap" data-media-id=${item.id}>
-                                <div class="card-body p-1 bg-light">
-                                    <p class="card-text">${item.filename}.${item.extension} </p>
+                        `<div class="media-window-item p-1 col-md-2 col-sm-4 col-6 position-relative" data-mwid="${item.id}">
+                            <span class="copy-media-link"><i class="ri-links-line copy-media-link-icon"></i> </span>
+                            <div class="card mwi-card">
+                                <img class="card-img-top mwi-img" src="${item.url}" alt="Card image cap" data-media-id=${item.id}>
+                                <div class="p-1 bg-light mwi-info">
+                                    <p class="text-dark m-0 text"> ${item.filename}.${item.extension}  </p>
+                                    <p class="text-black-50 m-0 fw-light"> ${item.size} kb  </p>                 
                                 </div>
                             </div>
                     </div>`
@@ -135,8 +139,33 @@
 
     document.addEventListener('click', function (e) {
 
+        // copy media link to clipbord
+        if (e.target.classList.contains('copy-media-link')||e.target.classList.contains('copy-media-link-icon')) {
+
+            
+            if(e.target.closest('.copy-media-link').classList.contains('copied')){
+                e.target.closest('.copy-media-link').classList.remove('copied')
+                navigator.clipboard.writeText('');
+            }else{
+                let copy_media_links =  document.querySelectorAll('.copy-media-link')
+                for (let i = 0; i < copy_media_links.length; i++) {
+                    copy_media_links[i].classList.remove('copied')
+                }
+                e.target.closest('.copy-media-link').classList.add('copied') 
+                let link = e.target.closest('.media-window-item').querySelector('.mwi-img').getAttribute('src')
+                navigator.clipboard.writeText(link);
+            }
+            
+        }
+
+
         // select media item on click
-        if (e.target.closest('.media-window-item')) {
+        if (e.target.closest('.media-window-item') && 
+            (
+            e.target.classList.contains('mwi-img') || 
+            e.target.closest('.mwi-info')
+            )
+            ) {
 
             let media_item = e.target.closest('.media-window-item')
 
@@ -201,7 +230,7 @@
             $('#mw_uploads').trigger('click')    
         }
 
-    })
+    },true)
 
 
     document.addEventListener('keyup', function (e) {

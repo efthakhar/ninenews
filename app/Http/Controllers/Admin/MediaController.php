@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use MediaUploader;
+// use MediaUploader;
 use Plank\Mediable\Media;
 use Throwable;
+use Plank\Mediable\Facades\MediaUploader;
 
 class MediaController extends Controller {
 
@@ -30,7 +31,9 @@ class MediaController extends Controller {
 					'filename' => $media_item->filename,
 					'url' => $media_item->getUrl(),
 					'extension' => $media_item->extension,
-					'size' => $media_item->size,
+					'size' => ($media_item->size/100),
+					'created_at' => $media_item->created_at,
+					'updated_at' => $media_item->updated_at,
 				];
 			}
 			return response()->json([
@@ -51,7 +54,7 @@ class MediaController extends Controller {
 		$uploaded_media = [];
 		$validatedData = $request->validate([
 			'mw_uploads'   => 'required',
-			'mw_uploads.*' => 'mimes:csv,txt,xlx,xls,pdf,jpg,jpeg',
+			'mw_uploads.*' => 'mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png',
 		]);
         
 		foreach ($request->file('mw_uploads') as $file) {

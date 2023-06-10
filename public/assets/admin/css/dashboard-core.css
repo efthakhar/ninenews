@@ -409,8 +409,28 @@ svg {
  width: 100%;
 
 }
-.media-window-item{position: relative; cursor: pointer;}
+.media-window-item{
+    position: relative; cursor: pointer;
+    overflow: hidden;
+}
 
+.copy-media-link{
+    position: absolute;
+    top:-100%;
+    left:0%;
+    padding:10px 15px;
+    background-color: white;
+    color:black;
+    z-index: 350;
+    transition: all .2s;
+    font-size: 16px;
+}
+
+.copy-media-link.copied{ background-color: yellow;}
+
+.media-window-item:hover .copy-media-link{
+    top:0%;
+}
 .media-window-item.selected .card{
     border:1px solid green;
     box-shadow: 1px 1px 5px green;
@@ -445,3 +465,4 @@ svg {
  right: 0px;
  top:0px;
 }
+
