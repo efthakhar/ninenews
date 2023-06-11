@@ -32,3 +32,5 @@ $(document).on('click','.inserted_img .cross-btn',function(){
 function tr(key) {
  return lang[key]
 }
+
+

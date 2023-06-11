@@ -24,6 +24,7 @@ class FullFreshDbSeeder extends Seeder
         $this->call(SuperAdminSeeder::class);
 
         $this->call(TagSeeder::class);
+        $this->call(CategorySeeder::class);
 
         
         Schema::enableForeignKeyConstraints();

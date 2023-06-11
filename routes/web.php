@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Frontend\TagController as FrontendTagController;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,16 @@ Route::middleware(['auth', 'checkAndSetLanguage'])->group(function() {
 	Route::get('/admin/tags/{id}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
 	Route::put('/admin/tags/{id}', [TagController::class, 'update'])->name('admin.tag.update');
 	Route::delete('/admin/tags/{id}', [TagController::class, 'delete'])->name('admin.tag.delete');
+
+	// Category
+	Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.category.index');
+	Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('admin.category.list');
+	Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.category.create');
+	Route::get('/admin/categories/{id}', [CategoryController::class, 'show'])->name('admin.category.single');
+	Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.category.store');
+	Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
+	Route::put('/admin/categories/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+	Route::delete('/admin/categories/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
 
 	// Media
 	Route::get('/admin/media', [MediaController::class, 'index'])->name('admin.media.index');

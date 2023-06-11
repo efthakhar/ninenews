@@ -179,7 +179,7 @@ svg {
     height: 100vh;
     flex: 0 0 230px;
     user-select: none;
-    border-right: 1px solid #dfdfdf;
+    border-right: 1px solid #d1d5db;
     background-color: #FFFFFF;
     overflow-y: auto;
     height: 100vh;
@@ -204,7 +204,7 @@ svg {
     align-items: center;
     text-align: center;
     padding: 1rem;
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 1px solid #d1d5db;
     z-index: 100;
 }
 
@@ -296,7 +296,7 @@ svg {
     padding: 5px 16px;
     min-height: 58px;
     background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 1px solid #d1d5db;
     position: sticky;
     top: 0%;
     z-index: 100;
@@ -422,7 +422,7 @@ svg {
     background-color: white;
     color:black;
     z-index: 350;
-    transition: all .2s;
+    /* transition: all .1s; */
     font-size: 16px;
 }
 
