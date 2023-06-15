@@ -20,7 +20,7 @@ return [
 				'permissions' => [],
 			],
 			[
-				'label'       => 'New Tag',
+				'label'       => 'New Category',
 				'link'        => '/admin/categories/create',
 				'icon'        => 'ri-arrow-right-fill',
 				'permissions' => [],

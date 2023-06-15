@@ -76,7 +76,7 @@ function fetchCategoryList(lang, posttype) {
 
 function fetchParentableCategoryList(lang, posttype, id) {
 
-    let url = window.location.origin + `/admin/categories/parentables?language=${lang}&posttype=${posttype}&id=${id}`
+    let url = window.location.origin + `/admin/categories/parentables/${lang}/${posttype}/${id}`
     return Promise.resolve(
         $.ajax({
             url: url,

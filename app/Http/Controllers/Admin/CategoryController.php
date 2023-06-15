@@ -86,9 +86,6 @@ class CategoryController extends Controller {
 		// ->increment('min_to_read', 1);
 
 		// echo "Number of affected rows: " . $affectedRows;
-
-
-
 	}
 
 	public function create() {
@@ -125,20 +122,85 @@ class CategoryController extends Controller {
 
 		$validatedData['created_by'] = auth()->id();
 
-		$tag                       = new Category();
-		$tag->parent_category_id   = $validatedData['parent_category'] ?? NULL;
-		$tag->name                 = $validatedData['name'];
-		$tag->slug                 = $validatedData['slug'];
-		$tag->description          = $validatedData['description'];
-		$tag->meta_tag_description = $validatedData['meta_tag_description'];
-		$tag->meta_tag_keywords    = $validatedData['meta_tag_keywords'];
-		$tag->lang                 = $validatedData['lang'];
-		$tag->post_type            = $validatedData['post_type'];
+		$category                       = new Category();
+		$category->parent_category_id   = $validatedData['parent_category'] ?? NULL;
+		$category->name                 = $validatedData['name'];
+		$category->slug                 = $validatedData['slug'];
+		$category->description          = $validatedData['description'];
+		$category->meta_tag_description = $validatedData['meta_tag_description'];
+		$category->meta_tag_keywords    = $validatedData['meta_tag_keywords'];
+		$category->lang                 = $validatedData['lang'];
+		$category->post_type            = $validatedData['post_type'];
 
-		$tag->save();
-		$tag->attachMedia($request->category_thumbnail, 'thumbnail');
+		$category->save();
+		$category->attachMedia($request->category_thumbnail, 'thumbnail');
 
 		return redirect()->route('admin.category.index');
+	}
+
+	public function edit($id) {
+		$this->authorize('update-categories');
+
+		return view('admin.category.edit', [
+			'category' => Category::find($id),
+		]);
+	}
+
+	public function update(Request $request, $id) {
+		$this->authorize('view-categories');
+
+		$slug = $request->slug ? strtolower(str_replace(' ', '-', $request->slug)) : strtolower(str_replace(' ', '-', $request->name));
+
+		$request->merge(['slug' => $slug]);
+
+		$validatedData = $request->validate([
+			'lang'      => 'required',
+			'post_type' => 'required',
+			'name'      => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'categories', 'name must be unique', $id),
+			],
+			'slug' => [
+				'required',
+				'max:30',
+				new CombineUnique(['lang' => $request->lang, 'name' => $request->name, 'post_type' => $request->post_type], 'tags', 'slug must be unique', $id),
+			],
+			'description'          => 'string|nullable',
+			'meta_tag_description' => 'string|nullable',
+			'meta_tag_keywords'    => 'string|nullable',
+		]);
+
+		$validatedData['updated_by'] = auth()->id();
+
+		// Tag::where('id', $id)->update($validatedData);
+		$category                       = Category::find($id);
+		$category->parent_category_id   = $validatedData['parent_category'] ?? NULL;
+		$category->name                 = $validatedData['name'];
+		$category->slug                 = $validatedData['slug'];
+		$category->description          = $validatedData['description'];
+		$category->meta_tag_description = $validatedData['meta_tag_description'];
+		$category->meta_tag_keywords    = $validatedData['meta_tag_keywords'];
+		$category->lang                 = $validatedData['lang'];
+		$category->post_type            = $validatedData['post_type'];
+
+		$category->save();
+		$category->detachMediaTags('thumbnail');
+		$category->attachMedia($request->category_thumbnail, 'thumbnail');
+
+		return redirect()->route('admin.category.edit', $id)->with('tagUpdateSuccess', 'Category Updated Successfully');
+	}
+
+	public function delete($id) {
+		$id = explode(',', $id);
+		$this->authorize('delete-tags');
+
+		foreach ($id as $i) {
+			$category = Category::find($i);
+			$category->delete();
+		}
+
+		return redirect()->back();
 	}
 
 	public function getAllDescendentCats($id) {
@@ -150,9 +212,13 @@ class CategoryController extends Controller {
 		}
 	}
 
-	public function getParentableCats($id) {
+	public function getParentableCats($lang, $post_type, $id) {
 		$this->getAllDescendentCats($id);
+		array_push($this->allDescendents, $id);
 
-		return Category::whereNotIn('id', $this->allDescendents);
+		return Category::whereNotIn('id', $this->allDescendents)
+			->where('lang', $lang)
+			->where('post_type', $post_type)
+			->get();
 	}
 }
