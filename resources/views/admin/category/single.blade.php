@@ -1,4 +1,6 @@
 <?php
 
-print_r($subcats);
+// print_r($subcats);
+
+// dd($category->name)
 

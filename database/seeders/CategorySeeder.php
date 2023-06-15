@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder {
 	public $categories = [
@@ -13,7 +14,7 @@ class CategorySeeder extends Seeder {
 			'name'               => 'sports',
 			'slug'               => 'sports',
 			'lang'               => 'en',
-			'post_type'          => 'article',
+			'post_type'          => 'article'
 		],
 		[
 			'id'                 => 2,
@@ -54,7 +55,7 @@ class CategorySeeder extends Seeder {
 			'slug'               => 'europe-news',
 			'lang'               => 'en',
 			'post_type'          => 'article',
-		],
+		]
 	];
 
 	public function run(): void {
@@ -63,6 +64,7 @@ class CategorySeeder extends Seeder {
 		foreach ($this->categories as $category) {
 			Category::create($category);
 		}
+
 	}
 }
 
