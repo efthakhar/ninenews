@@ -1,73 +1,40 @@
 
-function buildNestedHTMLList(data, parentId = null, level = 1) {
-    let html = "";
-   
-    data.forEach(item => {
-      if (item.parent_category_id === parentId) {
-        html += "<option class='p cursor-pointer text-lowercase' value="+item.id+">";
-        // Add "-" sign based on the nesting level
-        html += "-".repeat(level) + " " + item.name;
-  
-        const children = data.filter(child => child.parent_category_id === item.id);
-        if (children.length > 0) {
-          html += buildNestedHTMLList(data, item.id, level + 1); // Increase nesting level
-        }
-        html += "</option>";
-      }
-    });
-  
-    html += "";
-  
-    return html;
-}
-  
+document.addEventListener('DOMContentLoaded',() => {
+    enableParentCatForAddCategory()
+});
+
 document.addEventListener('change',(e)=>{
     if(e.target.getAttribute('id')=='post_type'){
-        enableParentCat()
+        enableParentCatForAddCategory()
     }
     if(e.target.getAttribute('id')=='lang'){
-        enableParentCat()
+        enableParentCatForAddCategory()
     }
 })
 
-function enableParentCat() {
+async function enableParentCatForAddCategory() {
 
     let lang =  document.getElementById('lang').value
     let post_type =  document.getElementById('post_type').value
-    console.log(lang,post_type)
+    // console.log(lang,post_type)
     if( lang!='' && post_type!='' ) {
-        fetchCategoryList(lang,post_type)
+
+       fetchCategoryList(lang,post_type).then((data)=>{
+ 
+        response = data  
+        if(response.length>0){ 
+            const nestedHTMLList = buildNestedCategoryList(data);
+            document.querySelector('#parent_category').innerHTML = 
+            "<option value='' class='p cursor-pointer text-lowercase'>All</option>"+nestedHTMLList
+            document.querySelector('#parent_category').removeAttribute('disabled')
+        }else{
+            document.querySelector('#parent_category').innerHTML = ''
+            document.querySelector('#parent_category').value = ''
+            document.querySelector('#parent_category').setAttribute("disabled",true)
+        }   
+       })
+
     }
-}
-
-function fetchCategoryList(lang, posttype) {
-    let response = []
-    let url = window.location.origin + `/admin/categories/list?language=${lang}&posttype=${posttype}` 
-    $.ajax({
-        url: url,
-        type: 'GET',
-        success: function (data) {
-
-            response = data  
-            if(response.length>0){ 
-                const nestedHTMLList = buildNestedHTMLList(data);
-                document.querySelector('#parent_category').innerHTML = 
-                "<option value='' class='p cursor-pointer text-lowercase'>All</option>"+nestedHTMLList
-                document.querySelector('#parent_category').removeAttribute('disabled')
-            }else{
-                document.querySelector('#parent_category').innerHTML = ''
-                document.querySelector('#parent_category').value = ''
-                document.querySelector('#parent_category').setAttribute("disabled",true)
-            }    
-           
-        },
-        error: function(data){
-             response = []
-           
-        }
-    });
-
-    
 }
 
 

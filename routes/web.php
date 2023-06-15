@@ -74,6 +74,7 @@ Route::middleware(['auth', 'checkAndSetLanguage'])->group(function() {
 	// Category
 	Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.category.index');
 	Route::get('/admin/categories/list', [CategoryController::class, 'list'])->name('admin.category.list');
+	Route::get('/admin/categories/parentables/{id}', [CategoryController::class, 'getParentableCats'])->name('admin.category.parentables');
 	Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.category.create');
 	Route::get('/admin/categories/{id}', [CategoryController::class, 'show'])->name('admin.category.single');
 	Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.category.store');
