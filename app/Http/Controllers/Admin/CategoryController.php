@@ -193,14 +193,14 @@ class CategoryController extends Controller {
 
 	public function delete($id) {
 		$id = explode(',', $id);
-		$this->authorize('delete-tags');
+		$this->authorize('delete-categories');
 
 		foreach ($id as $i) {
 			$category = Category::find($i);
 			$category->delete();
 		}
 
-		return redirect()->back();
+		return response()->json(['message'=>'category deleted'],201);
 	}
 
 	public function getAllDescendentCats($id) {

@@ -101,13 +101,12 @@
                 <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-sm p-0 text-sb1 mx-1">
                   <i class="ri-edit-2-line h4"></i>
                 </a>
-                <form action="{{ route('admin.category.delete', $category->id) }}" method="POST" class="delete-category-form">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="p-0 btn btn-sm text-danger delete-category mx-1" > 
+ 
+                  <button  class="p-0 btn btn-sm text-danger delete-category mx-1" 
+                  data-category-id="{{ $category->id }}"> 
                     <i class="ri-delete-bin-line h4"></i>
                   </button>
-                </form>
+               
               </div>
             </td>
           </tr>

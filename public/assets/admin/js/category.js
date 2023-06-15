@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     let url = window.location.href
 
@@ -98,4 +104,22 @@ $('.media-window-open-btn').on('click', (e) => {
             }
 
         })
+})
+
+
+
+
+$(document).on('click', '.delete-category',(e) => {
+
+    let id = e.target.closest('.delete-category').getAttribute('data-category-id')
+    let url = window.location.origin + `/admin/categories/${id}`
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: function (data) {                
+            e.target.closest('tr').remove()
+        }
+    });
+
+
 })
