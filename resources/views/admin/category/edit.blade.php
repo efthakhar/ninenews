@@ -5,6 +5,11 @@
         <div>
             <h3 class="text-capitalize"> Edit Category</h3>
         </div>
+        @if(session()->has('CategoryUpdateSuccess'))
+        <div class="alert bg-success-1 text-success-1">
+            {{ session()->get('CategoryUpdateSuccess') }}
+        </div>
+        @endif
         <div class="form-container">
             <form method="post" action="{{ route('admin.category.update', $category->id) }}" enctype="multipart/form-data">
                 @csrf
@@ -63,7 +68,7 @@
                         @error('meta_tag_description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
-                        <textarea name="meta_tag_description" class="form-control form-control-sm">{{ old('meta_tag_description') ?? $category->me }}</textarea>
+                        <textarea name="meta_tag_description" class="form-control form-control-sm">{{ old('meta_tag_description') ?? $category->meta_tag_description }}</textarea>
                     </div>
                     <div class="form_item col-md-6">
                         <label class="mt-3 mb-1">Meta keywords</label>

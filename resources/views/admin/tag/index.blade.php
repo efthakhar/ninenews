@@ -77,7 +77,7 @@
             {{-- <td class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </td> --}}
-            <td class="table-img-field"><img src="{{ $tag->firstMedia('thumbnail')!=NULL ? $tag->firstMedia('thumbnail')->getUrl():  config('app.dummy_img_url') }} " alt="" style="width:50px;height:50px"></td>
+            <td class="table-img-field"><img src="{{ $tag->firstMedia('thumbnail')!=NULL ? $tag->firstMedia('thumbnail')->getUrl(): dummy_img_url() }} " alt="" ></td>
             <td>{{$tag->name}}</td>
             <td>{{$tag->slug}}</td>
             <td>{{$tag->lang}}</td>

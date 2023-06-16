@@ -1,5 +1,9 @@
 <?php
-$GLOBALS['page_options'] = ['10' => 10, '1' => 1, '5' => 5];
+
+function dummy_img_url(){
+	return  url('/')."/storage/system/dummy.png";
+}
+
 function get_sidebar_navlinks() {
 	return require base_path() . '/database/data/navigations.php';
 }

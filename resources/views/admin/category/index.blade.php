@@ -87,7 +87,7 @@
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </td> --}}
             <td class="table-img-field">
-                <img  src="{{ $category->firstMedia('thumbnail')!=NULL ? $category->firstMedia('thumbnail')->getUrl(): config('app.dummy_img_url') }} " alt="" style="width:50px;height:50px">
+                <img  src="{{ $category->firstMedia('thumbnail')!=NULL ? $category->firstMedia('thumbnail')->getUrl(): dummy_img_url() }} " alt="">
             </td>
             <td>{{$category->name}}</td>
             <td>{{$category->slug}}</td>

@@ -148,7 +148,6 @@ class TagController extends Controller {
 
 		$validatedData['updated_by'] = auth()->id();
 
-		//Tag::where('id', $id)->update($validatedData);
 		$tag            = Tag::find($id);
 		$tag->name      = $validatedData['name'];
 		$tag->slug      = $validatedData['slug'];

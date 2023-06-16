@@ -74,18 +74,11 @@ class CategoryController extends Controller {
 	}
 
 	public function show($id) {
-		// $this->authorize('view-categories');
-		// $this->getAllDescendentCats($id);
-		// return view('admin.category.single', [
-		// 	'category' => Category::with('media')->find($id),
-		//     'subcats' => $this->allDescendents
-		// ]);
-
-		// $affectedRows = DB::table('posts')
-		// ->where('id', 3)
-		// ->increment('min_to_read', 1);
-
-		// echo "Number of affected rows: " . $affectedRows;
+		$this->authorize('view-categories');
+		
+		return view('admin.category.single', [
+			'category' => Category::find($id),
+		]);
 	}
 
 	public function create() {
@@ -187,7 +180,7 @@ class CategoryController extends Controller {
 		$category->detachMediaTags('thumbnail');
 		$category->attachMedia($request->category_thumbnail, 'thumbnail');
 
-		return redirect()->route('admin.category.edit', $id)->with('tagUpdateSuccess', 'Category Updated Successfully');
+		return redirect()->route('admin.category.edit', $id)->with('CategoryUpdateSuccess', 'Category Updated Successfully');
 	}
 
 	public function delete($id) {
