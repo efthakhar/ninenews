@@ -48,6 +48,26 @@ return [
 		],
 	],
 	[
+		'label'       => 'Post',
+		'link'        => '/admin/posts',
+		'icon'        => 'ri-article-line',
+		'permissions' => [],
+		'sublinks'    => [
+			[
+				'label'       => 'All Post',
+				'link'        => '/admin/posts',
+				'icon'        => 'ri-arrow-right-fill',
+				'permissions' => [],
+			],
+			[
+				'label'       => 'New Post',
+				'link'        => '/admin/posts/create',
+				'icon'        => 'ri-arrow-right-fill',
+				'permissions' => [],
+			],
+		],
+	],
+	[
 		'label'       => 'Media',
 		'link'        => '/admin/media',
 		'icon'        => 'ri-folder-2-line',
