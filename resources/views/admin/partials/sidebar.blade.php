@@ -1,16 +1,9 @@
 <div class="admin-sidebar">
     <div class="admin-sibar__logo">
-
-        <span class="admin-sibar__logo_icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                    d="M1.94631 9.31555C1.42377 9.14137 1.41965 8.86034 1.95706 8.6812L21.0433 2.31913C21.5717 2.14297 21.8748 2.43878 21.7268 2.95706L16.2736 22.0433C16.1226 22.5718 15.8179 22.5901 15.5946 22.0877L12.0002 14.0002L18.0002 6.00017L10.0002 12.0002L1.94631 9.31555Z"
-                    fill="rgba(0,132,255,1)"></path>
-            </svg>
-        </span>
-        <h2 class="logo-text" style="font-size:2.5rem">
-            <span class="text-sb1">9</span><span class="text-b1">news</span>
-        </h2>
+        <a href="{{url('/admin')}}">
+            <h2 class="logo-text" style="font-size:2.5rem">
+                <span class="text-sb1">9</span><span class="text-b1">news</span>
+            </h2></a>
         <span class="hide-small-device-sidebar">
             <i class="ri-menu-fold-fill h2 "></i>
         </span>

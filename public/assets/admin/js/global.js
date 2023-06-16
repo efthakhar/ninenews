@@ -32,6 +32,11 @@ $(document).on('click', '.inserted_img .cross-btn', function () {
 })
 
 
+$('.filter-toggle-btn').on('click', function (e) {
+   $('.filter-form-container').toggleClass('d-none')
+})
+
+
 
 function buildNestedCategoryList(data, parentId = null, level = 1) {
     let html = "";

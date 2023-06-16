@@ -23,18 +23,18 @@ th, h1, h2, h3, h4, h5, h6, p, a {
 
 input[type=checkbox] {
     cursor: pointer;
-    width: 16px;
+    /* width: 16px;
     height: 16px;
     box-shadow: none !important;
     outline: none;
-    border: 1px solid #d3d3d3;
+    border: 1px solid #d3d3d3; */
 }
 
-.form-check-input:checked, .form-check-input:focus {
+/* .form-check-input:checked, .form-check-input:focus {
     box-shadow: none;
     background-color: none;
     border: 1px solid #d3d3d3;
-}
+} */
 
 /* utitlies */
 
@@ -133,8 +133,14 @@ input[type=checkbox] {
     color: #374948 !important;
 }
 
-
-
+.table-img-field{
+    max-width: 100px;
+}
+.table-img-field img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+}
 
 /* Works on Firefox */
 * {
@@ -200,11 +206,10 @@ svg {
     position: -webkit-sticky;
     top: 0%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 1rem;
-    border-bottom: 1px solid #d1d5db;
+    padding: 1rem .7rem;
     z-index: 100;
 }
 

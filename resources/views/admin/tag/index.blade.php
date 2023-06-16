@@ -6,20 +6,20 @@
   <div class="d-flex flex-wrap">
     <h4 class="h4 text-capitalize"> {{ __('messages.tags') }} </h4>
     
-    {{-- <button class="btn btn-sm btn-secondary ms-auto m-1" >
-      <i class="ri-filter-2-fill"></i>
-      <span class="d-none d-sm-inline ms-1">Filter</span>
-    </button> --}}
     <a href="/admin/tags/create" class="ms-auto">
       <button class="btn btn-sm btn-primary m-1">
-        <i class="ri-add-fill"></i>
+        <i class="ri-add-circle-line h6"></i>
         <span class="d-none d-sm-inline ms-1"> Add New</span>
       </button>
     </a>
+    <button class="btn btn-sm btn-info text-white m-1 filter-toggle-btn">
+      <i class="ri-filter-2-fill h6"></i>
+      <span class="d-none d-sm-inline ms-1">Filter</span>
+    </button>
     
   </div>
 
-  <div class="filter-form-container mt-2">
+  <div class="filter-form-container mt-2 d-none">
     <form action="{{route('admin.tag.index')}}" class="row" method="GET" id="filter-form">
       <div class="form-item col-sm-4 col-md-2">
         <label for="">per page</label>
@@ -63,7 +63,7 @@
             {{-- <th scope="col" class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </th> --}}
-            <th scope="col">#</th>
+            <th scope="col">Thumbnail</th>
             <th scope="col" class="mw100px">Name</th>
             <th scope="col" class="mw200px">Slug</th>
             <th scope="col" class="mw200px">Language</th>
@@ -77,7 +77,7 @@
             {{-- <td class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </td> --}}
-            <td><img src="{{ $tag->firstMedia('thumbnail')!=NULL ? $tag->firstMedia('thumbnail')->getUrl(): '' }} " alt="" style="width:50px;height:50px"></td>
+            <td class="table-img-field"><img src="{{ $tag->firstMedia('thumbnail')!=NULL ? $tag->firstMedia('thumbnail')->getUrl():  config('app.dummy_img_url') }} " alt="" style="width:50px;height:50px"></td>
             <td>{{$tag->name}}</td>
             <td>{{$tag->slug}}</td>
             <td>{{$tag->lang}}</td>

@@ -173,7 +173,6 @@ class CategoryController extends Controller {
 
 		$validatedData['updated_by'] = auth()->id();
 
-		// Tag::where('id', $id)->update($validatedData);
 		$category                       = Category::find($id);
 		$category->parent_category_id   = $validatedData['parent_category'] ?? NULL;
 		$category->name                 = $validatedData['name'];

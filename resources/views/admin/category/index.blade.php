@@ -13,14 +13,18 @@
     </button> --}}
     <a href="/admin/categories/create" class="ms-auto">
       <button class="btn btn-sm btn-primary m-1">
-        <i class="ri-add-fill"></i>
+        <i class="ri-add-circle-line h6"></i>
         <span class="d-none d-sm-inline ms-1"> Add New</span>
       </button>
     </a>
+    <button class="btn btn-sm btn-info text-white m-1 filter-toggle-btn">
+      <i class="ri-filter-2-fill h6"></i>
+      <span class="d-none d-sm-inline ms-1">Filter</span>
+    </button>
     
   </div>
 
-  <div class="filter-form-container mt-2">
+  <div class="filter-form-container mt-2 d-none">
     <form action="{{route('admin.category.index')}}" class="row" method="GET" id="filter-form">
       <div class="form-item col-sm-4 col-md-2">
         <label for="">per page</label>
@@ -52,7 +56,10 @@
         <label for="">post type</label>
         {{ generate_posttype_options('posttype','category-filter-form-posttype', $_GET['posttype']??'', true,"form-control form-control-sm my-1") }}
       </div>
-      <button  type="submit" class="d-none">Apply Filter</button>
+      <div class="form-item col-md-12 my-1">
+        <button  type="submit" class="btn btn-sm btn-primary">Apply Filter</button>
+      </div>
+      
     </form>
   </div>
  
@@ -61,9 +68,9 @@
       <table class="table table-bordered" >
         <thead >
           <tr>
-            <th scope="col" class="fw50px text-center">
+            {{-- <th scope="col" class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            </th>
+            </th> --}}
             <th scope="col">Thunmbnail</th>
             <th scope="col" class="mw100px">Name</th>
             <th scope="col" class="mw200px">Slug</th>
@@ -76,11 +83,11 @@
         <tbody>
           @foreach($categories as $category)
           <tr>
-            <td class="fw50px text-center">
+            {{-- <td class="fw50px text-center">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            </td>
-            <td>
-                <img src="{{ $category->firstMedia('thumbnail')!=NULL ? $category->firstMedia('thumbnail')->getUrl(): '' }} " alt="" style="width:50px;height:50px">
+            </td> --}}
+            <td class="table-img-field">
+                <img  src="{{ $category->firstMedia('thumbnail')!=NULL ? $category->firstMedia('thumbnail')->getUrl(): config('app.dummy_img_url') }} " alt="" style="width:50px;height:50px">
             </td>
             <td>{{$category->name}}</td>
             <td>{{$category->slug}}</td>

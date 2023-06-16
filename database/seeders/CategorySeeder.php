@@ -55,7 +55,55 @@ class CategorySeeder extends Seeder {
 			'slug'               => 'europe-news',
 			'lang'               => 'en',
 			'post_type'          => 'article',
-		]
+		],
+		[
+			'id'                 => 7,
+			'parent_category_id' => 6,
+			'name'               => 'Spain News',
+			'slug'               => 'spain-news',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
+		[
+			'id'                 => 8,
+			'parent_category_id' => NULL,
+			'name'               => 'Politics',
+			'slug'               => 'politics',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
+		[
+			'id'                 => 9,
+			'parent_category_id' => 8,
+			'name'               => 'GEO-Politics',
+			'slug'               => 'geo-politics',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
+		[
+			'id'                 => 10,
+			'parent_category_id' => 8,
+			'name'               => 'Local Politics',
+			'slug'               => 'local-politics',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
+		[
+			'id'                 => 11,
+			'parent_category_id' => NULL,
+			'name'               => 'Study',
+			'slug'               => 'study',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
+		[
+			'id'                 => 12,
+			'parent_category_id' => 11,
+			'name'               => 'Study Abroad',
+			'slug'               => 'study-abroad',
+			'lang'               => 'en',
+			'post_type'          => 'article',
+		],
 	];
 
 	public function run(): void {

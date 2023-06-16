@@ -43,6 +43,7 @@ return [
     */
 
     'default_perpage' => 10,
+    'dummy_img_url' => url('/')."/storage/system/dummy.png",
 
     /*
     |--------------------------------------------------------------------------

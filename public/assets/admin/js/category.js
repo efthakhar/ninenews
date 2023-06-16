@@ -109,17 +109,20 @@ $('.media-window-open-btn').on('click', (e) => {
 
 
 
-$(document).on('click', '.delete-category',(e) => {
+$(document).on('click', '.delete-category', (e) => {
 
-    let id = e.target.closest('.delete-category').getAttribute('data-category-id')
-    let url = window.location.origin + `/admin/categories/${id}`
-    $.ajax({
-        url: url,
-        type: 'DELETE',
-        success: function (data) {                
-            e.target.closest('tr').remove()
+    showConfirmbox().then((confirmed) => {
+        if (confirmed == true) {
+            let id = e.target.closest('.delete-category').getAttribute('data-category-id')
+            let url = window.location.origin + `/admin/categories/${id}`
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (data) {
+                    e.target.closest('tr').remove()
+                }
+            });
         }
     });
-
 
 })
