@@ -12,6 +12,7 @@ class PermissionSeeder extends Seeder
     private $permissions = [
        'create-tags', 'view-tags', 'update-tags', 'delete-tags',
        'create-categories', 'view-categories', 'update-categories', 'delete-categories',
+       'create-posts', 'view-posts', 'update-posts', 'deposte-tags',
     ];
     /**
      * Run the database seeds.
