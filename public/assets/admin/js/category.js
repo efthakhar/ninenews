@@ -42,7 +42,7 @@ async function enableParentCatForAddCategory() {
 
             response = data
             if (response.length > 0) {
-                const nestedHTMLList = buildNestedCategoryList(data);
+                const nestedHTMLList = buildNestedCategoryList(data,null);
                 document.querySelector('#parent_category').innerHTML =
                     "<option value='' class='p cursor-pointer text-lowercase'>All</option>" + nestedHTMLList
                 document.querySelector('#parent_category').removeAttribute('disabled')
@@ -60,14 +60,16 @@ async function enableParentCatForEditCategory() {
 
     let lang = document.getElementById('edit_cat_lang').value
     let post_type = document.getElementById('edit_cat_post_type').value
-    let id = document.getElementById('edit_cat_parent_category').getAttribute('data-cat-id')
+    let current_parent_cat_id = document.getElementById('edit_cat_parent_category').getAttribute('data-cat-id')
+    let current_cat_id = document.getElementById('current_cat_id').value
+  
     if (lang != '' && post_type != '') {
 
-        fetchParentableCategoryList(lang, post_type, id).then((data) => {
+        fetchParentableCategoryList(lang, post_type, current_cat_id).then((data) => {
 
             response = data
             if (response.length > 0) {
-                const nestedHTMLList = buildNestedCategoryList(data);
+                const nestedHTMLList = buildNestedCategoryList(data,current_parent_cat_id );
                 document.querySelector('#edit_cat_parent_category').innerHTML =
                     "<option value='' class='p cursor-pointer text-lowercase'>All</option>" + nestedHTMLList
                 document.querySelector('#edit_cat_parent_category').removeAttribute('disabled')

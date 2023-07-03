@@ -14,6 +14,7 @@
             <form method="post" action="{{ route('admin.category.update', $category->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="current_cat_id" id="current_cat_id" value="{{$category->id}}">
                 <div class="row">
                     <div class="form_item col-md-4">
                         <label class="mt-3 mb-1">Language</label>
@@ -31,7 +32,8 @@
                     </div>
                     <div class="form_item col-md-4">
                         <label class="mt-3 mb-1">Parent Category</label>
-                        <select disabled name="parent_category" id="edit_cat_parent_category" data-cat-id="{{$category->id}}"
+                        <select disabled name="parent_category" id="edit_cat_parent_category" 
+                        data-cat-id="{{ $category->parent_category ? $category->parent_category->id:'' }}"
                             class="form-control form-control-sm text-lowercase">
                         </select>
 

@@ -38,19 +38,19 @@ $('.filter-toggle-btn').on('click', function (e) {
 
 
 
-function buildNestedCategoryList(data, parentId = null, level = 1) {
+function buildNestedCategoryList(data,current_parent_category=null, parentId = null, level = 1) {
     let html = "";
-
     data.forEach(item => {
-
+        let selected = current_parent_category==item.id?'selected':''
+        
         if (item.parent_category_id === parentId) {
 
-            html += "<option class='p cursor-pointer text-lowercase' value=" + item.id + ">";
+            html += "<option "+selected+" class='p cursor-pointer text-lowercase' value=" + item.id + ">";
             html += "<span> &#8212; </span>".repeat(level) + " " + item.name;
 
             const children = data.filter(child => child.parent_category_id === item.id);
             if (children.length > 0) {
-                html += buildNestedCategoryList(data, item.id, level + 1); // Increase nesting level
+                html += buildNestedCategoryList(data,current_parent_category, item.id, level + 1); // Increase nesting level
             }
             html += "</option>";
         }
